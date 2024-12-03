@@ -7,4 +7,13 @@ export const antTheme = {
     colorError: "#ef4435",
     borderRadius: 4,
   },
+  components: {
+    Button: {
+      paddingBlock: 8,
+      paddingInline: 16,
+    },
+    Input: {
+      colorPrimary: "#7539ff",
+    },
+  },
 };
