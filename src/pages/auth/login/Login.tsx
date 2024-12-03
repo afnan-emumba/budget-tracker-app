@@ -41,7 +41,14 @@ const Login = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button block type='primary' htmlType='submit'>
+          <Button
+            block
+            type='primary'
+            htmlType='submit'
+            style={{
+              textTransform: "uppercase",
+            }}
+          >
             Log in
           </Button>
           or <a href=''>Register now!</a>
