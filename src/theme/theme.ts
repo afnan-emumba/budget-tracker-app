@@ -13,7 +13,11 @@ export const antTheme = {
       paddingInline: 16,
     },
     Input: {
-      colorPrimary: "#7539ff",
+      paddingBlock: 4,
+      paddingInline: 12,
+      colorBgContainer: "#EFF4FB",
+      border: "1px solid #DDE4F0",
+      color: "#333",
     },
   },
 };

@@ -1,0 +1,20 @@
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 6rem;
+}
+
+.login-form {
+    width: 30%;
+}
+
+.login-image {
+    width: 30%;
+}
+
+.vertical-line {
+    border-left: 1px solid #DDE4F0;
+    height: 80vh;
+    width: 1px;
+}
