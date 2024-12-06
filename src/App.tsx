@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ConfigProvider } from "antd";
 
-import Signup from "./pages/auth/signup/Signup";
-import Login from "./pages/auth/login/Login";
-import Home from "./pages/home/Home";
 import AuthLayout from "./layouts/authLayout/AuthLayout";
 import MainLayout from "./layouts/mainLayout/MainLayout";
+import Signup from "./pages/auth/signup/Signup";
+import Login from "./pages/auth/login/Login";
+import ForgotPassword from "./pages/auth/forgotPassword/ForgotPassword";
+import Home from "./pages/home/Home";
 import { antTheme } from "./theme/theme";
 import "./App.css";
 
@@ -16,8 +17,9 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<AuthLayout />}>
-              <Route path='/signup' element={<Signup />} />
               <Route path='/login' element={<Login />} />
+              <Route path='/signup' element={<Signup />} />
+              <Route path='/reset-password' element={<ForgotPassword />} />
             </Route>
 
             <Route element={<MainLayout />}>

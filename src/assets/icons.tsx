@@ -117,14 +117,39 @@ export const EyeIcon = () => {
       <path
         d='M11 1.25C3.5 1.25 0.5 8 0.5 8C0.5 8 3.5 14.75 11 14.75C18.5 14.75 21.5 8 21.5 8C21.5 8 18.5 1.25 11 1.25Z'
         stroke='#98A2B3'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
       <path
         d='M11 11.75C13.0711 11.75 14.75 10.0711 14.75 8C14.75 5.92893 13.0711 4.25 11 4.25C8.92893 4.25 7.25 5.92893 7.25 8C7.25 10.0711 8.92893 11.75 11 11.75Z'
         stroke='#98A2B3'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  );
+};
+
+export const EyeOnIcon = () => {
+  return (
+    <svg
+      width='22'
+      height='16'
+      viewBox='0 0 22 16'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <path
+        d='M11 1.25C3.5 1.25 0.5 8 0.5 8C0.5 8 3.5 14.75 11 14.75C18.5 14.75 21.5 8 21.5 8C21.5 8 18.5 1.25 11 1.25Z'
+        stroke='#7539FF'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path
+        d='M11 11.75C13.0711 11.75 14.75 10.0711 14.75 8C14.75 5.92893 13.0711 4.25 11 4.25C8.92893 4.25 7.25 5.92893 7.25 8C7.25 10.0711 8.92893 11.75 11 11.75Z'
+        stroke='#7539FF'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
     </svg>
   );

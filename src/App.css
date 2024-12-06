@@ -36,3 +36,7 @@ p {
   margin-bottom: 1rem;
   color: #878A99;
 }
+
+input::placeholder {
+  font-family: 'Poppins', sans-serif;
+}

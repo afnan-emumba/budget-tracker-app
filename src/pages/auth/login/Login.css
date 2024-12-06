@@ -1,20 +1,56 @@
 .login-page {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 6rem;
 }
 
 .login-form {
-    width: 30%;
+  width: 30%;
 }
 
 .login-image {
-    width: 30%;
+  width: 30%;
+  height: auto;
 }
 
 .vertical-line {
-    border-left: 1px solid #DDE4F0;
-    height: 80vh;
-    width: 1px;
+  border-left: 1px solid #DDE4F0;
+  height: 80vh;
+  width: 1px;
+}
+
+@media (max-width: 1024px) {
+  .login-page {
+    margin: 0 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+    margin: 0 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .vertical-line {
+    display: none;
+  }
+
+  .login-image {
+    display: none;
+  }
+
+  .login-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page {
+    margin: 0 1rem;
+    justify-content: center;
+    align-items: center;
+  }
 }
