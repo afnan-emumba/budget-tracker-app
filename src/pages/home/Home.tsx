@@ -7,7 +7,11 @@ const Home = () => {
       <Helmet>
         <title>My Expenses | Budget Tracker</title>
       </Helmet>
-      Home
+
+      <div className='home-content'>
+        <h1>Hello</h1>
+        <p>Afnan Sohail</p>
+      </div>
     </div>
   );
 };

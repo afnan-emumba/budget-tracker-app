@@ -5,7 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 import "./MainLayout.css";
 
 const MainLayout = () => {
-  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
@@ -18,7 +18,9 @@ const MainLayout = () => {
         className={`main-content ${sidebarVisible ? "expanded" : "collapsed"}`}
       >
         <Navbar toggleSidebar={toggleSidebar} />
-        <Outlet />
+        <div className='content'>
+          <Outlet />
+        </div>
       </div>
     </div>
   );

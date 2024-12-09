@@ -7,6 +7,8 @@ import Signup from "./pages/auth/signup/Signup";
 import Login from "./pages/auth/login/Login";
 import ForgotPassword from "./pages/auth/forgotPassword/ForgotPassword";
 import Home from "./pages/home/Home";
+import Analysis from "./pages/analysis/Analysis";
+
 import { antTheme } from "./theme/theme";
 import "./App.css";
 
@@ -24,6 +26,7 @@ function App() {
 
             <Route element={<MainLayout />}>
               <Route path='/' element={<Home />} />
+              <Route path='/analysis' element={<Analysis />} />
             </Route>
           </Routes>
         </BrowserRouter>
