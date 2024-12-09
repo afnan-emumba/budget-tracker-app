@@ -1,0 +1,9 @@
+.main-layout {
+    display: flex;
+    height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+    transition: all 0.3s ease;
+}
