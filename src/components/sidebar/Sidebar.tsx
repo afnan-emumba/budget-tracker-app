@@ -9,7 +9,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ isVisible }: SidebarProps) => {
-  const [selectedItem, setSelectedItem] = useState("Analysis");
+  const [selectedItem, setSelectedItem] = useState("Expenses");
 
   return (
     <div className={`sidebar ${isVisible ? "expanded" : "collapsed"}`}>

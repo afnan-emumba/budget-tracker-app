@@ -31,6 +31,7 @@ export const antTheme = {
       itemActiveBg: "#7539ff",
       colorPrimary: "white",
       itemSize: 28,
+      colorText: "#667085",
     },
   },
 };

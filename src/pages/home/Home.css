@@ -22,8 +22,42 @@
     gap: 1rem;
 }
 
+.table-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E1E8F2;
+    border: 1px solid #DDE4F0;
+    border-radius: 4px;
+}
+
+.table-select label {
+    margin: 0;
+    padding: 0 10px;
+    color: #667085;
+}
+
+.table-input {
+    background-color: white;
+}
+
+.ant-picker {
+    border: none !important;
+    border-radius: 0 4px 4px 0 !important;
+}
+
+.ant-select-selector {
+    border: none !important;
+    border-radius: 0 4px 4px 0 !important;
+}
+
+.ant-select-selection-item {
+    color: #BCC0C9 !important;
+}
+
 .ant-table-title {
     background-color: #F7F7F7 !important;
+    border-bottom: 1px solid #DDE4F0 !important;
 }
 
 .expense-table {
@@ -33,20 +67,21 @@
 }
 
 .ant-pagination {
-    margin-right: 16px !important;
     display: inline-block;
 }
 
+.ant-pagination-item {
+    border: 1px solid #DDE4F0 !important;
+}
 
 .table-footer p {
     margin: 0;
     font-size: 14px;
-    text-align: left;
 }
 
 .table-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
+    padding: 16px 16px;
 }

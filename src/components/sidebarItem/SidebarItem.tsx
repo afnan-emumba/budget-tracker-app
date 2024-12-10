@@ -26,7 +26,7 @@ const SidebarItem = ({
       }`}
     >
       <li>
-        <Link to={`/${link}`} className='sidebar-item' onClick={onClick}>
+        <Link to={`/${link}`} className='sidebar-item' onClick={onClick} title={text}>
           <div className={`sidebar-icon ${isSelected ? "selected" : ""}`}>
             {icon}
           </div>
