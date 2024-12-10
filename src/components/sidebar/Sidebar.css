@@ -2,7 +2,6 @@
     width: auto;
     min-height: 100vh;
     height: auto;
-    transition: all 0.3s ease;
     box-sizing: border-box;
     border-right: 1px solid #EEEEEE;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);

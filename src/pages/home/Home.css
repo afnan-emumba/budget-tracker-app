@@ -41,6 +41,10 @@
     background-color: white;
 }
 
+.table-input:hover {
+    background-color: #fafafa !important;
+}
+
 .ant-picker {
     border: none !important;
     border-radius: 0 4px 4px 0 !important;
