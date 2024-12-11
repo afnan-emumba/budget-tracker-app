@@ -17,7 +17,7 @@ import {
   SearchIcon1,
   CalendarIcon,
 } from "../../assets/icons";
-import "./Home.css";
+import styles from "./Home.module.css";
 
 interface ExpenseData {
   key: number;
@@ -134,24 +134,24 @@ const Home = () => {
         <title>My Expenses | Budget Tracker</title>
       </Helmet>
 
-      <div className='home-content'>
-        <div className='header'>
+      <div className={styles.homeContent}>
+        <div className={styles.header}>
           <h2>Expenses</h2>
           <Button type='primary'>Add Expenses</Button>
         </div>
 
         <Divider />
 
-        <div className='expense-table'>
+        <div className={styles.expenseTable}>
           <Table
             columns={tableColumns}
             dataSource={paginatedData}
             pagination={false}
             title={() => (
-              <div className='table-controls'>
+              <div className={styles.tableControls}>
                 <h3>Expenses</h3>
-                <div className='table-filters'>
-                  <div className='table-select'>
+                <div className={styles.tableFilters}>
+                  <div className={styles.tableSelect}>
                     <label>Sort by</label>
                     <Select defaultValue='All' style={{ width: 130 }}>
                       <Option value='date'>Date</Option>
@@ -159,7 +159,7 @@ const Home = () => {
                     </Select>
                   </div>
 
-                  <div className='table-select'>
+                  <div className={styles.tableSelect}>
                     <label>By Date</label>
                     <DatePicker
                       style={{ width: 130 }}
@@ -174,13 +174,13 @@ const Home = () => {
                       borderColor: "#E1E8F2",
                       borderRadius: "4px",
                     }}
-                    className='table-input'
+                    className={styles.tableInput}
                   />
                 </div>
               </div>
             )}
           />
-          <div className='table-footer'>
+          <div className={styles.tableFooter}>
             <p>
               Showing {paginatedData.length} / {data.length} items
             </p>

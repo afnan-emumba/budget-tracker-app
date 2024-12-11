@@ -3,12 +3,13 @@ import { ConfigProvider } from "antd";
 
 import AuthLayout from "./layouts/authLayout/AuthLayout";
 import MainLayout from "./layouts/mainLayout/MainLayout";
+import ProfileLayout from "./layouts/profileLayout/ProfileLayout";
 import Signup from "./pages/auth/signup/Signup";
 import Login from "./pages/auth/login/Login";
 import ForgotPassword from "./pages/auth/forgotPassword/ForgotPassword";
 import Home from "./pages/home/Home";
 import Analysis from "./pages/analysis/Analysis";
-
+import Profile from "./pages/profile/Profile";
 import { antTheme } from "./theme/theme";
 import "./App.css";
 
@@ -27,6 +28,10 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path='/' element={<Home />} />
               <Route path='/analysis' element={<Analysis />} />
+            </Route>
+
+            <Route element={<ProfileLayout />}>
+              <Route path='/profile' element={<Profile />} />
             </Route>
           </Routes>
         </BrowserRouter>

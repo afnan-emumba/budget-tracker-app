@@ -2,16 +2,16 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router";
 import { Form, Input, Button } from "antd";
 import forgotImage from "../../../assets/images/forgot-illustration.png";
-import "./ForgotPassword.css";
+import styles from "./ForgotPassword.module.css";
 
 const ForgotPassword = () => {
   return (
-    <div className='forgot-page'>
+    <div className={styles.forgotPage}>
       <Helmet>
         <title>Reset Your Password | Budget Tracker</title>
       </Helmet>
 
-      <div className='forgot-form'>
+      <div className={styles.forgotForm}>
         <h2>Reset Password</h2>
         <p>Enter your email for a reset link.</p>
 
@@ -49,8 +49,8 @@ const ForgotPassword = () => {
           </Form.Item>
         </Form>
       </div>
-      <div className='vertical-line' />
-      <img src={forgotImage} alt='forgot' className='forgot-image' />
+      <div className={styles.verticalLine} />
+      <img src={forgotImage} alt='forgot' className={styles.forgotImage} />
     </div>
   );
 };

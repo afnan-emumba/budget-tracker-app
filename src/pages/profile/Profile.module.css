@@ -1,0 +1,43 @@
+.profileContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.profileLink {
+    transition: all 0.1s;
+}
+
+.profileLink:hover {
+    cursor: pointer;
+    color: #7A53E8;
+}
+
+.profileCardsContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.profileSection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+}
+
+.profileCard {
+    border: 1px solid #DDE4F0;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Ant Ovverides */
+.profileContent :global(.ant-card-head) {
+    border-bottom: 1px solid #DDE4F0 !important;
+
+}

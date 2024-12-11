@@ -2,7 +2,7 @@ import { useState } from "react";
 import Logo from "../logo/Logo";
 import SidebarItem from "../sidebarItem/SidebarItem";
 import { AnalysisIcon, ExpensesIcon, LogoutIcon } from "../../assets/icons";
-import "./Sidebar.css";
+import styles from "./Sidebar.module.css";
 
 interface SidebarProps {
   isVisible: boolean;
@@ -12,11 +12,15 @@ const Sidebar = ({ isVisible }: SidebarProps) => {
   const [selectedItem, setSelectedItem] = useState("Expenses");
 
   return (
-    <div className={`sidebar ${isVisible ? "expanded" : "collapsed"}`}>
-      <div className='sidebar-logo'>
+    <div
+      className={`${styles.sidebar} ${
+        isVisible ? styles.expanded : styles.collapsed
+      }`}
+    >
+      <div className={styles.sidebarLogo}>
         <Logo showText={isVisible} />
       </div>
-      <div className='sidebar-content'>
+      <div className={styles.sidebarContent}>
         <ul>
           <SidebarItem
             icon={

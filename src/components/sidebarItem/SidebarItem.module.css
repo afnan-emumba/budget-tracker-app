@@ -1,4 +1,4 @@
-.sidebar-item-container {
+.sidebarItemContainer {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -6,15 +6,15 @@
     border-radius: 0.5rem;
 }
 
-.sidebar-item-container.collapse {
+.sidebarItemContainer.collapse {
     justify-content: center;
 }
 
-.sidebar-item-container.selected {
+.sidebarItemContainer.selected {
     background-color: #7539FF;
 }
 
-.sidebar-item {
+.sidebarItem {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -22,28 +22,28 @@
     height: 1.5rem;
 }
 
-.sidebar-item:hover {
+.sidebarItem:hover {
     cursor: pointer;
 }
 
-.sidebar-icon {
+.sidebarIcon {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.sidebar-icon.selected {
+.sidebarIcon.selected {
     color: white;
 }
 
-.sidebar-text {
+.sidebarText {
     margin: 0;
 }
 
-.sidebar-text.collapse {
+.sidebarText.collapse {
     display: none;
 }
 
-.sidebar-text.selected {
+.sidebarText.selected {
     color: white;
 }

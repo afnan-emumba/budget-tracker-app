@@ -7,7 +7,7 @@
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
 }
 
-.sidebar-logo {
+.sidebarLogo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,7 @@
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
 }
 
-.sidebar-content {
+.sidebarContent {
     padding: 2rem;
 }
 
@@ -25,11 +25,10 @@
     width: auto;
 }
 
-.sidebar-content ul {
+.sidebarContent ul {
     list-style-type: none;
     padding: 0;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-
 }

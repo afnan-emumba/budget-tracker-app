@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { Form, Input, Button } from "antd";
 import signupImage from "../../../assets/images/signup-illustration.png";
 import { EmailIcon, EyeIcon, EyeOnIcon } from "../../../assets/icons";
-import "./Signup.css";
+import styles from "./Signup.module.css";
 import { useState } from "react";
 import { useFormik } from "formik";
 import { validationSchema } from "../../../utils/validation";
@@ -38,12 +38,12 @@ const Signup = () => {
   });
 
   return (
-    <div className='signup-page'>
+    <div className={styles.signupPage}>
       <Helmet>
         <title>Sign Up | Budget Tracker</title>
       </Helmet>
 
-      <div className='signup-form'>
+      <div className={styles.signupForm}>
         <h2>Sign Up</h2>
         <p>Welcome to our community</p>
 
@@ -220,8 +220,8 @@ const Signup = () => {
           </Form.Item>
         </Form>
       </div>
-      <div className='vertical-line' />
-      <img src={signupImage} alt='signup' className='signup-image' />
+      <div className={styles.verticalLine} />
+      <img src={signupImage} alt='signup' className={styles.signupImage} />
     </div>
   );
 };

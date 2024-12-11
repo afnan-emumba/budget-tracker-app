@@ -1,55 +1,54 @@
-.signup-page {
+.signupPage {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 6rem;
-
 }
 
-.signup-form {
+.signupForm {
     width: 30%;
 }
 
-.vertical-line {
+.verticalLine {
     border-left: 1px solid #DDE4F0;
     height: 80vh;
     width: 1px;
 }
 
-.signup-image {
+.signupImage {
     width: 35%;
     height: auto;
 }
 
 @media (max-width: 1024px) {
-    .signup-page {
+    .signupPage {
         margin: 0 3rem;
     }
 }
 
 @media (max-width: 768px) {
-    .signup-page {
+    .signupPage {
         flex-direction: column;
         margin: 0 2rem;
         justify-content: center;
         align-items: center;
     }
 
-    .vertical-line {
+    .verticalLine {
         display: none;
     }
 
-    .signup-image {
+    .signupImage {
         display: none;
     }
 
-    .signup-form {
+    .signupForm {
         width: 100%;
     }
 }
 
 @media (max-width: 480px) {
-    .signup-page {
+    .signupPage {
         margin: 0 1rem;
         justify-content: center;
         align-items: center;

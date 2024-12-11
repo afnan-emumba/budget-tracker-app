@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import "./SidebarItem.css";
+import styles from "./SidebarItem.module.css";
 
 interface SidebarItemProps {
   icon: React.ReactNode;
@@ -21,18 +21,23 @@ const SidebarItem = ({
 }: SidebarItemProps & { onClick: () => void }) => {
   return (
     <div
-      className={`sidebar-item-container ${isSelected ? "selected" : ""} ${
-        isVisible ? "" : "collapse"
+      className={`${styles.sidebarItemContainer} ${isSelected ? styles.selected : ""} ${
+        isVisible ? "" : styles.collapse
       }`}
     >
       <li>
-        <Link to={`/${link}`} className='sidebar-item' onClick={onClick} title={text}>
-          <div className={`sidebar-icon ${isSelected ? "selected" : ""}`}>
+        <Link
+          to={`/${link}`}
+          className={styles.sidebarItem}
+          onClick={onClick}
+          title={text}
+        >
+          <div className={`${styles.sidebarIcon} ${isSelected ? styles.selected : ""}`}>
             {icon}
           </div>
           <p
-            className={`sidebar-text ${isSelected ? "selected" : ""} ${
-              isVisible ? "" : "collapse"
+            className={`${styles.sidebarText} ${isSelected ? styles.selected : ""} ${
+              isVisible ? "" : styles.collapse
             }`}
           >
             {text}

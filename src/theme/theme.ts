@@ -33,5 +33,9 @@ export const antTheme = {
       itemSize: 28,
       colorText: "#667085",
     },
+    Card: {
+      headerBg: "#F7F7F7",
+      borderRadiusLG: 8,
+    },
   },
 };

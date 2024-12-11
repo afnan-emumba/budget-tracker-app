@@ -1,6 +1,7 @@
 .auth-logo {
     margin-left: 6rem;
     margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 @media (max-width: 1024px) {

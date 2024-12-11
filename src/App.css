@@ -30,13 +30,26 @@ h2 {
   font-weight: 600;
 }
 
+h3 {
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 p {
   font-size: 1rem;
   font-weight: 400;
-  margin-bottom: 1rem;
   color: #878A99;
 }
 
 input::placeholder {
   font-family: 'Poppins', sans-serif;
+}
+
+.ant-table-title {
+  background-color: #F7F7F7 !important;
+  border-bottom: 1px solid #DDE4F0 !important;
 }

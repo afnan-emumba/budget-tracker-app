@@ -1,6 +1,6 @@
 import LogoMark from "../../assets/logo-main.svg";
 import LogoType from "../../assets/logo-type.svg";
-import "./Logo.css";
+import styles from "./Logo.module.css";
 
 interface LogoProps {
   showText?: boolean;
@@ -8,9 +8,9 @@ interface LogoProps {
 
 const Logo = ({ showText = true }: LogoProps) => {
   return (
-    <div className='logo'>
-      <img src={LogoMark} alt='Logo Main' className='logo-mark' />
-      {showText && <img src={LogoType} alt='Logo Main' className='logo-type' />}
+    <div className={styles.logo}>
+      <img src={LogoMark} alt='Logo Main' className={styles.logoMark} />
+      {showText && <img src={LogoType} alt='Logo Main' className={styles.logoType} />}
     </div>
   );
 };

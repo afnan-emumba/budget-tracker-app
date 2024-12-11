@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { Form, Input, Button, Checkbox, Flex } from "antd";
 import { EmailIcon, EyeIcon, EyeOnIcon } from "../../../assets/icons";
 import loginImage from "../../../assets/images/login-illustration.png";
-import "./Login.css";
+import styles from "./Login.module.css";
 import { useState } from "react";
 
 const Login = () => {
@@ -14,12 +14,12 @@ const Login = () => {
   };
 
   return (
-    <div className='login-page'>
+    <div className={styles.loginPage}>
       <Helmet>
         <title>Login | Budget Tracker</title>
       </Helmet>
 
-      <div className='login-form'>
+      <div className={styles.loginForm}>
         <h2>Welcome Back!</h2>
         <p>Sign in to continue to Budget Tracker</p>
 
@@ -92,8 +92,8 @@ const Login = () => {
           </Form.Item>
         </Form>
       </div>
-      <div className='vertical-line' />
-      <img src={loginImage} alt='login' className='login-image' />
+      <div className={styles.verticalLine} />
+      <img src={loginImage} alt='login' className={styles.loginImage} />
     </div>
   );
 };

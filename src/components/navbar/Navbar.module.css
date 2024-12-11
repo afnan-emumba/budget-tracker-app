@@ -9,26 +9,25 @@
     transition: all 0.3s ease;
 }
 
-.navbar-content {
+.navbarContent {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2rem;
 }
 
-
-.user-avatar {
+.userAvatar {
     object-fit: cover;
     object-position: center center;
 }
 
-.user-avatar img {
+.userAvatar img {
     width: 2.5rem;
     height: auto;
     border-radius: 100%;
 }
 
-.sidebar-toggle-button {
+.sidebarToggleButton {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,6 +36,6 @@
     margin-left: 0rem;
 }
 
-.sidebar-toggle-button:hover {
+.sidebarToggleButton:hover {
     cursor: pointer;
 }
