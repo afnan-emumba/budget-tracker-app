@@ -5,12 +5,31 @@ import { EmailIcon, EyeIcon, EyeOnIcon } from "../../../assets/icons";
 import loginImage from "../../../assets/images/login-illustration.png";
 import styles from "./Login.module.css";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
+import { updateUser } from "../../../redux/slices/usersSlice";
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const users = useSelector((state: RootState) => state.user.users);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
+  };
+
+  const handleLogin = (values: { email: string; password: string }) => {
+    const user = users.find(
+      (user) => user.email === values.email && user.password === values.password
+    );
+    if (user) {
+      dispatch(updateUser({ userId: user.userId, isLoggedIn: true }));
+      navigate("/");
+    } else {
+      alert("Invalid email or password");
+    }
   };
 
   return (
@@ -20,14 +39,17 @@ const Login = () => {
       </Helmet>
 
       <div className={styles.loginForm}>
-        <h2>Welcome Back!</h2>
-        <p>Sign in to continue to Budget Tracker</p>
+        <div>
+          <h2>Welcome Back!</h2>
+          <p>Sign in to continue to Budget Tracker</p>
+        </div>
 
         <Form
           name='login'
           initialValues={{ remember: true }}
           layout='vertical'
           requiredMark='optional'
+          onFinish={handleLogin}
         >
           <Form.Item
             name='email'

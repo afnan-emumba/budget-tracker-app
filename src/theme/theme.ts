@@ -37,5 +37,8 @@ export const antTheme = {
       headerBg: "#F7F7F7",
       borderRadiusLG: 8,
     },
+    Modal: {
+      titleFontSize: 20,
+    },
   },
 };

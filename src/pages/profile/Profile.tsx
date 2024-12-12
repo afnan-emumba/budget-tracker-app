@@ -6,8 +6,11 @@ import ProfileSideCard from "../../components/profileSideCard/ProfileSideCard";
 import ProfileDetails from "../../components/profileDetails/ProfileDetails";
 import EditProfile from "../../components/editProfile/EditProfile";
 import styles from "./Profile.module.css";
+import { useState } from "react";
 
 const Profile = () => {
+  const [activeTab, setActiveTab] = useState("profile");
+
   return (
     <>
       <Helmet>
@@ -35,15 +38,29 @@ const Profile = () => {
               gap: "2rem",
             }}
           >
-            <p className={styles.profileLink}>Profile</p>
-            <p className={styles.profileLink}>My account</p>
+            <p
+              className={`${styles.profileLink} ${
+                activeTab === "profile" ? styles.active : ""
+              }`}
+              onClick={() => setActiveTab("profile")}
+            >
+              Profile
+            </p>
+            <p
+              className={`${styles.profileLink} ${
+                activeTab === "account" ? styles.active : ""
+              }`}
+              onClick={() => setActiveTab("account")}
+            >
+              My account
+            </p>
           </div>
         </div>
         <Divider />
         <div className={styles.profileCardsContainer}>
           <ProfileSideCard />
-          {/* <ProfileDetails /> */}
-          <EditProfile />
+          {activeTab === "profile" && <ProfileDetails />}
+          {activeTab === "account" && <EditProfile />}
         </div>
       </div>
     </>

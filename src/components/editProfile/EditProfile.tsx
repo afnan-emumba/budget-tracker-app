@@ -29,7 +29,7 @@ const EditProfile = () => {
           <h3>Address</h3>
           <div className={styles.inputRow}>
             <div className={styles.inputGroup}>
-              <label>Street</label>
+              <label>Street Address</label>
               <Input placeholder='Street' />
             </div>
             <div className={styles.inputGroup}>
@@ -92,7 +92,7 @@ const EditProfile = () => {
         <div className={styles.section}>
           <h3>Financial Information</h3>
           <div className={styles.inputRow}>
-            <div className={styles.inputGroup}>
+            <div>
               <label>Budget (PKR)</label>
               <Input placeholder='Budget' />
             </div>

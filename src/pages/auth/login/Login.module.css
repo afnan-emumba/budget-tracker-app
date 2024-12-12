@@ -7,6 +7,9 @@
 
 .loginForm {
   width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .loginImage {

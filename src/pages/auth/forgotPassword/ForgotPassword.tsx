@@ -12,8 +12,10 @@ const ForgotPassword = () => {
       </Helmet>
 
       <div className={styles.forgotForm}>
-        <h2>Reset Password</h2>
-        <p>Enter your email for a reset link.</p>
+        <div>
+          <h2>Reset Password</h2>
+          <p>Enter your email for a reset link.</p>
+        </div>
 
         <Form
           name='login'

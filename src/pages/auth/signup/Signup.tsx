@@ -7,11 +7,17 @@ import styles from "./Signup.module.css";
 import { useState } from "react";
 import { useFormik } from "formik";
 import { validationSchema } from "../../../utils/validation";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../../redux/slices/usersSlice";
+import { RootState } from "../../../redux/store";
 
 const Signup = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const users = useSelector((state: RootState) => state.user.users);
+  const [emailExists, setEmailExists] = useState(false);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -32,8 +38,33 @@ const Signup = () => {
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log(values);
-      navigate("/login");
+      const userExists = users.some((user) => user.email === values.email);
+      if (userExists) {
+        setEmailExists(true);
+      } else {
+        dispatch(
+          setUser({
+            userId: Date.now(),
+            firstName: values.firstName,
+            middleName: "",
+            lastName: values.lastName,
+            bio: "",
+            gender: "",
+            email: values.email,
+            password: values.password,
+            website: "",
+            education: "",
+            streetAddress: "",
+            city: "",
+            state: "",
+            zipCode: "",
+            dateOfBirth: "",
+            budgetLimit: parseFloat(values.budget),
+            isLoggedIn: false,
+          })
+        );
+        navigate("/login");
+      }
     },
   });
 
@@ -44,8 +75,10 @@ const Signup = () => {
       </Helmet>
 
       <div className={styles.signupForm}>
-        <h2>Sign Up</h2>
-        <p>Welcome to our community</p>
+        <div>
+          <h2>Sign Up</h2>
+          <p>Welcome to our community</p>
+        </div>
 
         <Form name='signup' layout='vertical' onFinish={formik.handleSubmit}>
           <div style={{ display: "flex", gap: "1rem" }}>
@@ -95,12 +128,14 @@ const Signup = () => {
           <Form.Item
             label='Email'
             validateStatus={
-              formik.errors.email && formik.touched.email ? "error" : ""
+              (formik.errors.email && formik.touched.email) || emailExists
+                ? "error"
+                : ""
             }
             help={
-              formik.errors.email && formik.touched.email
+              (formik.errors.email && formik.touched.email
                 ? formik.errors.email
-                : ""
+                : "") || (emailExists ? "User already exists" : "")
             }
           >
             <Input
@@ -108,7 +143,10 @@ const Signup = () => {
               suffix={<EmailIcon />}
               placeholder='test@gmail.com'
               value={formik.values.email}
-              onChange={formik.handleChange}
+              onChange={(e) => {
+                formik.handleChange(e);
+                setEmailExists(false);
+              }}
               onBlur={formik.handleBlur}
             />
           </Form.Item>

@@ -1,0 +1,3 @@
+.modalContent :global(.ant-picker) {
+    background-color: #eff4fb !important;
+}

@@ -36,3 +36,13 @@
     justify-content: flex-start;
     gap: 0.5rem;
 }
+
+/* Ant Overrides */
+
+.editProfileSection :global(.ant-select-selector) {
+    background-color: #eff4fb !important;
+}
+
+.editProfileSection :global(.ant-picker) {
+    background-color: #eff4fb !important;
+}

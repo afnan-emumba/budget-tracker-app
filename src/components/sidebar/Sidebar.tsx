@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Logo from "../logo/Logo";
 import SidebarItem from "../sidebarItem/SidebarItem";
 import { AnalysisIcon, ExpensesIcon, LogoutIcon } from "../../assets/icons";
+import { updateUser } from "../../redux/slices/usersSlice";
 import styles from "./Sidebar.module.css";
 
 interface SidebarProps {
@@ -10,6 +13,13 @@ interface SidebarProps {
 
 const Sidebar = ({ isVisible }: SidebarProps) => {
   const [selectedItem, setSelectedItem] = useState("Expenses");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(updateUser({ userId: 0, isLoggedIn: false }));
+    navigate("/login");
+  };
 
   return (
     <div
@@ -52,10 +62,9 @@ const Sidebar = ({ isVisible }: SidebarProps) => {
               />
             }
             text='Log Out'
-            link='login'
             isSelected={selectedItem === "Log Out"}
             isVisible={isVisible}
-            onClick={() => setSelectedItem("Log Out")}
+            onClick={handleLogout}
           />
         </ul>
       </div>
