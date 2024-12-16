@@ -34,14 +34,6 @@ export const validationSchema = Yup.object().shape({
     .required("Budget is required"),
 });
 
-export const expenseValidationSchema = Yup.object().shape({
-  expense: Yup.string()
-    .max(30, "Title must be at most 30 characters")
-    .required("Title is required"),
-  price: Yup.number().required("Price is required"),
-  date: Yup.string().required("Date is required"),
-});
-
 export const profileValidationSchema = Yup.object().shape({
   firstName: Yup.string()
     .max(50, "First name must be at most 50 characters")
