@@ -11,6 +11,10 @@ import { useState } from "react";
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("profile");
 
+  const handleCancel = () => {
+    setActiveTab("profile");
+  };
+
   return (
     <>
       <Helmet>
@@ -60,7 +64,7 @@ const Profile = () => {
         <div className={styles.profileCardsContainer}>
           <ProfileSideCard />
           {activeTab === "profile" && <ProfileDetails />}
-          {activeTab === "account" && <EditProfile />}
+          {activeTab === "account" && <EditProfile onCancel={handleCancel} />}
         </div>
       </div>
     </>

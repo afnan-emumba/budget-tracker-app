@@ -1,24 +1,18 @@
+import { useSelector } from "react-redux";
 import { Card, Divider } from "antd";
-import { PhoneIcon, MailIcon, LocationIcon, LinkIcon } from "../../assets/icons";
+import { RootState } from "../../redux/store";
+import {
+  PhoneIcon,
+  MailIcon,
+  LocationIcon,
+  LinkIcon,
+} from "../../assets/icons";
 import styles from "./ProfileSideCard.module.css";
 
-const userDetails = [
-  {
-    firstName: "Michel",
-    lastName: "Johnson",
-    gender: "Male",
-    email: "michel.johnson@example.com",
-    website: "micheljohnson.com",
-    education: "Bachelor's in Design",
-    address: "1234 Elm Street, Springfield, IL",
-    phone: "+1 234 567 890",
-    zipCode: "62704",
-    dateOfBirth: "1990-01-01",
-    budgetLimit: 5000,
-  },
-];
-
 const ProfileSideCard = () => {
+  const users = useSelector((state: RootState) => state.user.users);
+  const loggedInUser = users.find((user) => user.isLoggedIn);
+
   return (
     <Card
       className={styles.profileCard}
@@ -32,72 +26,90 @@ const ProfileSideCard = () => {
     >
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <img
-          src='https://randomuser.me/api/portraits/men/1.jpg'
-          alt='avatar'
-          style={{
-            width: 100,
-            height: 100,
-            borderRadius: "50%",
-            marginBottom: "1rem",
-          }}
-        />
-        <h3>Michel Johnson</h3>
-        <p>UI/UX Designer</p>
-      </div>
-      <Divider />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "start",
-          gap: "1rem",
+          minWidth: 200,
         }}
       >
         <div
           style={{
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            gap: "0.5rem",
           }}
         >
-          <PhoneIcon />
-          <p>{userDetails[0].phone}</p>
+          <img
+            src='https://randomuser.me/api/portraits/men/1.jpg'
+            alt='avatar'
+            style={{
+              width: 100,
+              height: 100,
+              borderRadius: "50%",
+              marginBottom: "1rem",
+            }}
+          />
+          <h3>
+            {loggedInUser?.firstName} {loggedInUser?.lastName}
+          </h3>
         </div>
+        <Divider style={{ width: "100%" }} />
         <div
           style={{
             display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
+            flexDirection: "column",
+            alignItems: "start",
+            gap: "1rem",
           }}
         >
-          <MailIcon />
-          <p>{userDetails[0].email}</p>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-          }}
-        >
-          <LocationIcon />
-          <p>{userDetails[0].address}</p>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-          }}
-        >
-          <LinkIcon />
-          <p>{userDetails[0].website}</p>
+          {loggedInUser?.phoneNumber && (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+              }}
+            >
+              <PhoneIcon />
+              <p>{loggedInUser.phoneNumber}</p>
+            </div>
+          )}
+          {loggedInUser?.email && (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+              }}
+            >
+              <MailIcon />
+              <p>{loggedInUser.email}</p>
+            </div>
+          )}
+          {loggedInUser?.streetAddress && (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+              }}
+            >
+              <LocationIcon />
+              <p>
+                {loggedInUser.streetAddress}, {loggedInUser.city},{" "}
+                {loggedInUser.state}, {loggedInUser.zipCode}
+              </p>
+            </div>
+          )}
+          {loggedInUser?.website && (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+              }}
+            >
+              <LinkIcon />
+              <p>{loggedInUser.website}</p>
+            </div>
+          )}
         </div>
       </div>
     </Card>
