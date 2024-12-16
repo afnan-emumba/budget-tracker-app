@@ -3,11 +3,12 @@ export interface User {
   firstName: string;
   middleName: string;
   lastName: string;
-  bio: string;
+  aboutMe: string;
   gender: string;
   email: string;
   password: string;
   website: string;
+  phoneNumber: string;
   education: string;
   streetAddress: string;
   city: string;

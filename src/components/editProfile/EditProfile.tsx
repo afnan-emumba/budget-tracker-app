@@ -12,16 +12,16 @@ const EditProfile = () => {
           <h3>Name & Job</h3>
           <div className={styles.inputRow}>
             <div className={styles.inputGroup}>
-              <label>First Name</label>
-              <Input placeholder='First Name' />
+              <label htmlFor='firstName'>First Name</label>
+              <Input id='firstName' placeholder='First Name' />
             </div>
             <div className={styles.inputGroup}>
-              <label>Last Name</label>
-              <Input placeholder='Last Name' />
+              <label htmlFor='middleName'>Middle Name</label>
+              <Input id='middleName' placeholder='Middle Name' />
             </div>
             <div className={styles.inputGroup}>
-              <label>Middle Name</label>
-              <Input placeholder='Middle Name' />
+              <label htmlFor='lastName'>Last Name</label>
+              <Input id='lastName' placeholder='Last Name' />
             </div>
           </div>
         </div>
@@ -30,26 +30,20 @@ const EditProfile = () => {
           <h3>Address</h3>
           <div className={styles.inputRow}>
             <div className={styles.inputGroup}>
-              <label>Street Address</label>
-              <Input placeholder='Street' />
+              <label htmlFor='streetAddress'>Street Address</label>
+              <Input id='streetAddress' placeholder='Street' />
             </div>
             <div className={styles.inputGroup}>
-              <label>City</label>
-              <Input placeholder='City' />
+              <label htmlFor='city'>City</label>
+              <Input id='city' placeholder='City' />
             </div>
             <div className={styles.inputGroup}>
-              <label>State</label>
-              <Input placeholder='State' />
+              <label htmlFor='state'>State</label>
+              <Input id='state' placeholder='State' />
             </div>
             <div className={styles.inputGroup}>
-              <label>Zip Code</label>
-              <Input placeholder='Zip Code' />
-            </div>
-          </div>
-          <div className={styles.inputRow}>
-            <div className={styles.inputGroup}>
-              <label>Complete Address</label>
-              <Input placeholder='Complete Address' />
+              <label htmlFor='zipCode'>Zip Code</label>
+              <Input id='zipCode' placeholder='Zip Code' />
             </div>
           </div>
         </div>
@@ -58,12 +52,12 @@ const EditProfile = () => {
           <h3>Contact Info</h3>
           <div className={styles.inputRow}>
             <div className={styles.inputGroup}>
-              <label>Phone Number</label>
-              <Input placeholder='Phone Number' />
+              <label htmlFor='phoneNumber'>Phone Number</label>
+              <Input id='phoneNumber' placeholder='Phone Number' />
             </div>
             <div className={styles.inputGroup}>
-              <label>Email</label>
-              <Input placeholder='Email' />
+              <label htmlFor='email'>Email</label>
+              <Input id='email' placeholder='Email' />
             </div>
           </div>
         </div>
@@ -72,26 +66,26 @@ const EditProfile = () => {
           <h3>Bio</h3>
           <div className={styles.inputRow}>
             <div className={styles.inputGroup}>
-              <label>Date of Birth</label>
-              <DatePicker placeholder='Date of Birth' />
+              <label htmlFor='dateOfBirth'>Date of Birth</label>
+              <DatePicker id='dateOfBirth' placeholder='Date of Birth' />
             </div>
             <div className={styles.inputGroup}>
-              <label>Education</label>
-              <Input placeholder='Education' />
+              <label htmlFor='education'>Education</label>
+              <Input id='education' placeholder='Education' />
             </div>
             <div className={styles.inputGroup}>
-              <label>Gender</label>
-              <Select placeholder='Gender'>
+              <label htmlFor='gender'>Gender</label>
+              <Select id='gender' placeholder='Gender'>
                 <Option value='male'>Male</Option>
                 <Option value='female'>Female</Option>
                 <Option value='rather_not_say'>Rather not say</Option>
               </Select>
             </div>
           </div>
-          <div className={styles.inputGroup}>
-            <label>About Me</label>
-            <div className={styles.inputRow}>
-              <TextArea rows={3} placeholder='About me' />
+          <div className={styles.inputRow}>
+            <div className={styles.inputGroup}>
+              <label htmlFor='aboutMe'>About Me</label>
+              <TextArea id='aboutMe' rows={3} placeholder='About me' />
             </div>
           </div>
         </div>
@@ -100,8 +94,8 @@ const EditProfile = () => {
           <h3>Financial Information</h3>
           <div className={styles.inputRow}>
             <div>
-              <label>Budget (PKR)</label>
-              <Input placeholder='Budget' />
+              <label htmlFor='budgetLimit'>Budget (PKR)</label>
+              <Input id='budgetLimit' placeholder='Budget' />
             </div>
           </div>
         </div>
