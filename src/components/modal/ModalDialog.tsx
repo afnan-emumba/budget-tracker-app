@@ -1,5 +1,5 @@
 import { Modal, Button, Input, DatePicker } from "antd";
-import { ExpenseData } from "../../pages/home/Home";
+import { Expense } from "../../utils/interfaces";
 import styles from "./ModalDialog.module.css";
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
@@ -8,9 +8,9 @@ interface ModalDialogProps {
   modalType: "add" | "edit" | "delete" | null;
   visible: boolean;
   onClose: () => void;
-  expense: ExpenseData | null;
-  onAddExpense: (expense: ExpenseData) => void;
-  onEditExpense: (expense: ExpenseData) => void;
+  expense: Expense | null;
+  onAddExpense: (expense: Expense) => void;
+  onEditExpense: (expense: Expense) => void;
   onDeleteExpense: (key: number) => void;
 }
 
@@ -40,7 +40,7 @@ const ModalDialog = ({
   }, [modalType, expense]);
 
   const handleAdd = () => {
-    const newExpense: ExpenseData = {
+    const newExpense: Expense = {
       key: Date.now(),
       userId: expense?.userId || 0,
       expense: title,
@@ -52,7 +52,7 @@ const ModalDialog = ({
 
   const handleEdit = () => {
     if (expense) {
-      const updatedExpense: ExpenseData = {
+      const updatedExpense: Expense = {
         ...expense,
         expense: title,
         price,
