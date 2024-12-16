@@ -1,7 +1,9 @@
+import { useState, useEffect } from "react";
 import { Modal, Button, Input, DatePicker } from "antd";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 import { Expense } from "../../utils/interfaces";
 import styles from "./ModalDialog.module.css";
-import { useState, useEffect } from "react";
 import dayjs from "dayjs";
 
 interface ModalDialogProps {
@@ -39,10 +41,13 @@ const ModalDialog = ({
     }
   }, [modalType, expense]);
 
+  const users = useSelector((state: RootState) => state.user.users);
+  const loggedInUser = users.find((user) => user.isLoggedIn);
+
   const handleAdd = () => {
     const newExpense: Expense = {
       key: Date.now(),
-      userId: expense?.userId || 0,
+      userId: loggedInUser?.userId || 0,
       expense: title,
       price,
       date: date.format("YYYY-MM-DD"),
@@ -72,81 +77,89 @@ const ModalDialog = ({
     switch (modalType) {
       case "add":
         return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-              padding: "1rem 0",
-            }}
-            className={styles.modalContent}
-          >
-            <div>
-              <p style={{ color: "#2B2B2B", fontWeight: 500 }}>Title</p>
-              <Input
-                placeholder='Enter title'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
-            <div style={{ display: "flex", gap: "1rem" }}>
-              <div style={{ flex: 1 }}>
-                <p style={{ color: "#2B2B2B", fontWeight: 500 }}>Price (PKR)</p>
+          <form>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+                padding: "1rem 0",
+              }}
+              className={styles.modalContent}
+            >
+              <div>
+                <p style={{ color: "#2B2B2B", fontWeight: 500 }}>Title</p>
                 <Input
-                  placeholder='Enter price'
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  placeholder='Enter title'
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
-              <div style={{ flex: 1 }}>
-                <p style={{ color: "#2B2B2B", fontWeight: 500 }}>Date</p>
-                <DatePicker
-                  style={{ width: "100%" }}
-                  value={date}
-                  onChange={(date) => setDate(date || dayjs())}
-                />
+              <div style={{ display: "flex", gap: "1rem" }}>
+                <div style={{ flex: 1 }}>
+                  <p style={{ color: "#2B2B2B", fontWeight: 500 }}>
+                    Price (PKR)
+                  </p>
+                  <Input
+                    placeholder='Enter price'
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <p style={{ color: "#2B2B2B", fontWeight: 500 }}>Date</p>
+                  <DatePicker
+                    style={{ width: "100%" }}
+                    value={date}
+                    onChange={(date) => setDate(date || dayjs())}
+                  />
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         );
       case "edit":
         return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-              padding: "1rem 0",
-            }}
-            className={styles.modalContent}
-          >
-            <div>
-              <p style={{ color: "#2B2B2B", fontWeight: 500 }}>Title</p>
-              <Input
-                placeholder='Enter title'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
-            <div style={{ display: "flex", gap: "1rem" }}>
-              <div style={{ flex: 1 }}>
-                <p style={{ color: "#2B2B2B", fontWeight: 500 }}>Price (PKR)</p>
+          <form>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+                padding: "1rem 0",
+              }}
+              className={styles.modalContent}
+            >
+              <div>
+                <p style={{ color: "#2B2B2B", fontWeight: 500 }}>Title</p>
                 <Input
-                  placeholder='Enter price'
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  placeholder='Enter title'
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
-              <div style={{ flex: 1 }}>
-                <p style={{ color: "#2B2B2B", fontWeight: 500 }}>Date</p>
-                <DatePicker
-                  style={{ width: "100%" }}
-                  value={date}
-                  onChange={(date) => setDate(date || dayjs())}
-                />
+              <div style={{ display: "flex", gap: "1rem" }}>
+                <div style={{ flex: 1 }}>
+                  <p style={{ color: "#2B2B2B", fontWeight: 500 }}>
+                    Price (PKR)
+                  </p>
+                  <Input
+                    placeholder='Enter price'
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <p style={{ color: "#2B2B2B", fontWeight: 500 }}>Date</p>
+                  <DatePicker
+                    style={{ width: "100%" }}
+                    value={date}
+                    onChange={(date) => setDate(date || dayjs())}
+                  />
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         );
       case "delete":
         return (
@@ -253,6 +266,7 @@ const ModalDialog = ({
             </Button>
             <Button
               block
+              htmlType='submit'
               type='primary'
               style={{ padding: "20px 0", borderRadius: "8px" }}
               onClick={modalType === "add" ? handleAdd : handleEdit}

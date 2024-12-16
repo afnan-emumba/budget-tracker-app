@@ -36,12 +36,8 @@ export const validationSchema = Yup.object().shape({
 
 export const expenseValidationSchema = Yup.object().shape({
   expense: Yup.string()
-    .matches(
-      /^[a-zA-Z\s-0-9]+$/,
-      "Expense can only contain alphabets, spaces, hyphens, and numbers"
-    )
-    .max(30, "Expense must be at most 30 characters")
-    .required("Expense is required"),
+    .max(30, "Title must be at most 30 characters")
+    .required("Title is required"),
   price: Yup.number().required("Price is required"),
   date: Yup.string().required("Date is required"),
 });
