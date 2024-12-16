@@ -37,6 +37,12 @@
     gap: 0.5rem;
 }
 
+.error {
+    color: #FF5771;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
 /* Ant Overrides */
 
 .editProfileSection :global(.ant-select-selector) {

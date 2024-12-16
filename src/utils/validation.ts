@@ -63,12 +63,18 @@ export const profileValidationSchema = Yup.object().shape({
     .email("Invalid email format")
     .required("Email is required"),
   website: Yup.string().url("Invalid URL format"),
-  phoneNumber: Yup.string(),
+  phoneNumber: Yup.string()
+    .matches(/^[0-9]+$/, "Phone number must contain only digits")
+    .min(10, "Phone number must be at least 10 digits")
+    .max(15, "Phone number must be at most 15 digits"),
   education: Yup.string(),
   streetAddress: Yup.string(),
   city: Yup.string(),
   state: Yup.string(),
-  zipCode: Yup.number(),
+  zipCode: Yup.string()
+    .matches(/^[0-9]+$/, "Zip code must contain only digits")
+    .min(5, "Zip code must be at least 5 digits")
+    .max(10, "Zip code must be at most 10 digits"),
   dateOfBirth: Yup.string(),
   budgetLimit: Yup.number()
     .min(1, "Budget limit must be at least 1")
