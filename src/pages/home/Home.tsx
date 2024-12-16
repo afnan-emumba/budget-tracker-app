@@ -29,6 +29,7 @@ import {
   updateExpense,
 } from "../../redux/slices/expensesSlice";
 import { Expense } from "../../utils/interfaces";
+import { addNotification } from "../../redux/slices/notificationsSlice";
 
 const { Option } = Select;
 
@@ -144,6 +145,17 @@ const Home = () => {
     if (loggedInUser) {
       const newExpense = { ...expense, userId: loggedInUser.userId };
       dispatch(addExpense(newExpense));
+      dispatch(
+        addNotification({
+          id: Date.now(),
+          userId: loggedInUser.userId,
+          type: "add",
+          message: "added successfully",
+          timestamp: Date.now(),
+          icon: "add_icon",
+          expenseTitle: expense.expense,
+        })
+      );
       setModalType(null);
       setAlertMessage("Expense Added Successfully!");
       setAlertType("success");
@@ -153,6 +165,17 @@ const Home = () => {
 
   const handleEditExpense = (expense: Expense) => {
     dispatch(updateExpense(expense));
+    dispatch(
+      addNotification({
+        id: Date.now(),
+        userId: expense.userId,
+        type: "update",
+        message: "updated successfully",
+        timestamp: Date.now(),
+        icon: "update_icon",
+        expenseTitle: expense.expense,
+      })
+    );
     setModalType(null);
     setAlertMessage("Expense Updated Successfully!");
     setAlertType("success");
@@ -160,18 +183,32 @@ const Home = () => {
   };
 
   const handleDeleteExpense = (key: number) => {
-    dispatch(deleteExpense(key));
-    setModalType(null);
-    setAlertMessage("Expense Deleted Successfully!");
-    setAlertType("error");
-    setAlertVisible(true);
+    const expense = userExpenses.find((item) => item.key === key);
+    if (expense) {
+      dispatch(deleteExpense(key));
+      dispatch(
+        addNotification({
+          id: Date.now(),
+          userId: expense.userId,
+          type: "delete",
+          message: "removed",
+          timestamp: Date.now(),
+          icon: "delete_icon",
+          expenseTitle: expense.expense,
+        })
+      );
+      setModalType(null);
+      setAlertMessage("Expense Deleted Successfully!");
+      setAlertType("error");
+      setAlertVisible(true);
 
-    const totalRecordsAfterDeletion = userExpenses.length - 1;
-    const totalPagesAfterDeletion = Math.ceil(
-      totalRecordsAfterDeletion / pageSize
-    );
-    if (currentPage > totalPagesAfterDeletion) {
-      setCurrentPage(totalPagesAfterDeletion);
+      const totalRecordsAfterDeletion = userExpenses.length - 1;
+      const totalPagesAfterDeletion = Math.ceil(
+        totalRecordsAfterDeletion / pageSize
+      );
+      if (currentPage > totalPagesAfterDeletion) {
+        setCurrentPage(totalPagesAfterDeletion);
+      }
     }
   };
 

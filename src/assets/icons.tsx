@@ -396,3 +396,67 @@ export const LocationIcon = () => {
     </svg>
   );
 };
+
+export const AddNotificationIcon = () => {
+  return (
+    <svg
+      width='25'
+      height='25'
+      viewBox='0 0 25 25'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <circle cx='12.5' cy='12.5' r='12.5' fill='#6BB648' />
+      <line x1='12.5' y1='7' x2='12.5' y2='18' stroke='white' />
+      <line x1='18' y1='12.5' x2='7' y2='12.5' stroke='white' />
+    </svg>
+  );
+};
+
+export const UpdateNotificationIcon = () => {
+  return (
+    <svg
+      width='25'
+      height='25'
+      viewBox='0 0 25 25'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <circle cx='12.5' cy='12.5' r='12.5' fill='#2FB6E1' />
+      <path
+        d='M14.0519 8.83424C14.1579 8.72827 14.2837 8.64421 14.4221 8.58687C14.5606 8.52952 14.709 8.5 14.8588 8.5C15.0087 8.5 15.1571 8.52952 15.2955 8.58687C15.434 8.64421 15.5598 8.72827 15.6658 8.83424C15.7717 8.9402 15.8558 9.06601 15.9131 9.20446C15.9705 9.34291 16 9.4913 16 9.64116C16 9.79102 15.9705 9.93941 15.9131 10.0779C15.8558 10.2163 15.7717 10.3421 15.6658 10.4481L10.219 15.8948L8 16.5L8.60519 14.281L14.0519 8.83424Z'
+        stroke='white'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  );
+};
+
+export const DeleteNotificationIcon = () => {
+  return (
+    <svg
+      width='25'
+      height='25'
+      viewBox='0 0 25 25'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <circle cx='12.5' cy='12.5' r='12.5' fill='#F04A4A' />
+      <line
+        x1='15.7049'
+        y1='9.43217'
+        x2='9.43215'
+        y2='15.7049'
+        stroke='white'
+      />
+      <line
+        x1='15.5681'
+        y1='15.7051'
+        x2='9.29536'
+        y2='9.43239'
+        stroke='white'
+      />
+    </svg>
+  );
+};
