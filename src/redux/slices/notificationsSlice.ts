@@ -14,10 +14,12 @@ interface Notification {
 
 interface NotificationsState {
   notifications: Notification[];
+  hasNewNotifications: boolean;
 }
 
 const initialState: NotificationsState = {
   notifications: [],
+  hasNewNotifications: false,
 };
 
 const notificationsSlice = createSlice({
@@ -26,6 +28,7 @@ const notificationsSlice = createSlice({
   reducers: {
     addNotification: (state, action: PayloadAction<Notification>) => {
       state.notifications.push(action.payload);
+      state.hasNewNotifications = true;
     },
     deleteNotification: (state, action: PayloadAction<number>) => {
       state.notifications = state.notifications.filter(
@@ -39,6 +42,10 @@ const notificationsSlice = createSlice({
     },
     clearAllNotifications: (state) => {
       state.notifications = [];
+      state.hasNewNotifications = false;
+    },
+    markNotificationsAsRead: (state) => {
+      state.hasNewNotifications = false;
     },
   },
 });
@@ -58,5 +65,6 @@ export const {
   deleteNotification,
   clearNotificationsForUser,
   clearAllNotifications,
+  markNotificationsAsRead,
 } = notificationsSlice.actions;
 export default persistedNotificationsReducer;

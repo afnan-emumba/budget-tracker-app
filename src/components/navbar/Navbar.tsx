@@ -7,7 +7,11 @@ import Notification from "../notification/Notification";
 import Logo from "../logo/Logo";
 import Placeholder from "../../assets/images/placeholder_avatar.jpg";
 import styles from "./Navbar.module.css";
-import { clearAllNotifications } from "../../redux/slices/notificationsSlice";
+import {
+  clearAllNotifications,
+  markNotificationsAsRead,
+} from "../../redux/slices/notificationsSlice";
+import { useState } from "react";
 
 interface NavbarProps {
   toggleSidebar?: () => void;
@@ -27,6 +31,10 @@ const Navbar = ({
     (state: RootState) => state.notifications.notifications
   );
 
+  const hasNewNotifications = useSelector(
+    (state: RootState) => state.notifications.hasNewNotifications
+  );
+
   const userNotifications = notifications.filter(
     (notification) => notification.userId === loggedInUser?.userId
   );
@@ -36,6 +44,19 @@ const Navbar = ({
   const handleClearNotifications = () => {
     dispatch(clearAllNotifications());
   };
+
+  const [isNotificationDrawerOpen, setIsNotificationDrawerOpen] =
+    useState(false);
+
+  const handlePopoverVisibleChange = (visible: boolean) => {
+    setIsNotificationDrawerOpen(visible);
+    if (visible) {
+      dispatch(markNotificationsAsRead());
+    }
+  };
+
+  const hasUnreadNotifications =
+    hasNewNotifications && !isNotificationDrawerOpen;
 
   const notificationContent = (
     <div className={styles.notificationContent}>
@@ -74,9 +95,13 @@ const Navbar = ({
           trigger='click'
           arrow={false}
           placement='bottomRight'
+          onVisibleChange={handlePopoverVisibleChange}
         >
           <div className={styles.notificationIcon}>
             <NotificationIcon />
+            {hasUnreadNotifications && (
+              <span className={styles.notificationDot} />
+            )}
           </div>
         </Popover>
         <div className={styles.userAvatar}>
