@@ -43,6 +43,15 @@
     margin-top: 0.5rem;
 }
 
+.alert {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 2rem;
+    margin-top: 5rem;
+    width: 400px;
+}
+
 /* Ant Overrides */
 
 .editProfileSection :global(.ant-select-selector) {

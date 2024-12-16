@@ -62,7 +62,10 @@ export const profileValidationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
-  website: Yup.string().url("Invalid URL format"),
+  website: Yup.string().matches(
+    /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/,
+    "Invalid URL format"
+  ),
   phoneNumber: Yup.string()
     .matches(/^[0-9]+$/, "Phone number must contain only digits")
     .min(10, "Phone number must be at least 10 digits")

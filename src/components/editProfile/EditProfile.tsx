@@ -1,18 +1,20 @@
 import { Card, Divider, Input, Button, DatePicker, Select } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { useFormik } from "formik";
 import { RootState } from "../../redux/store";
+import { updateUser } from "../../redux/slices/usersSlice";
 import { profileValidationSchema } from "../../utils/validation";
 import styles from "./EditProfile.module.css";
 
 const { Option } = Select;
 const { TextArea } = Input;
 
-const EditProfile = ({ onCancel }: { onCancel: () => void }) => {
+const EditProfile = ({ onSwitchTab }: { onSwitchTab: () => void }) => {
   const users = useSelector((state: RootState) => state.user.users);
   const loggedInUser = users.find((user) => user.isLoggedIn);
 
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       firstName: loggedInUser?.firstName || "",
@@ -24,6 +26,7 @@ const EditProfile = ({ onCancel }: { onCancel: () => void }) => {
       zipCode: loggedInUser?.zipCode || "",
       phoneNumber: loggedInUser?.phoneNumber || "",
       email: loggedInUser?.email || "",
+      website: loggedInUser?.website || "",
       dateOfBirth: loggedInUser?.dateOfBirth || "",
       education: loggedInUser?.education || "",
       gender: loggedInUser?.gender || "",
@@ -39,7 +42,31 @@ const EditProfile = ({ onCancel }: { onCancel: () => void }) => {
           : "",
       };
       console.log("Form values:", formattedValues);
-      // Handle form submission
+      if (loggedInUser) {
+        dispatch(
+          updateUser({
+            userId: loggedInUser.userId,
+            firstName: formattedValues.firstName,
+            middleName: formattedValues.middleName,
+            lastName: formattedValues.lastName,
+            aboutMe: formattedValues.aboutMe,
+            gender: formattedValues.gender,
+            email: formattedValues.email,
+            password: loggedInUser.password,
+            website: formattedValues.website,
+            phoneNumber: formattedValues.phoneNumber,
+            education: formattedValues.education,
+            streetAddress: formattedValues.streetAddress,
+            city: formattedValues.city,
+            state: formattedValues.state,
+            zipCode: formattedValues.zipCode,
+            dateOfBirth: formattedValues.dateOfBirth,
+            budgetLimit: formattedValues.budgetLimit,
+            isLoggedIn: loggedInUser.isLoggedIn,
+          })
+        );
+        onSwitchTab();
+      }
     },
   });
 
@@ -192,6 +219,20 @@ const EditProfile = ({ onCancel }: { onCancel: () => void }) => {
                   <div className={styles.error}>{formik.errors.email}</div>
                 ) : null}
               </div>
+              <div className={styles.inputGroup}>
+                <label htmlFor='website'>Website</label>
+                <Input
+                  id='website'
+                  name='website'
+                  placeholder='Website'
+                  value={formik.values.website}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.website && formik.errors.website ? (
+                  <div className={styles.error}>{formik.errors.website}</div>
+                ) : null}
+              </div>
             </div>
           </div>
           <Divider />
@@ -296,7 +337,7 @@ const EditProfile = ({ onCancel }: { onCancel: () => void }) => {
             <Button type='primary' htmlType='submit'>
               Update
             </Button>
-            <Button type='text' onClick={onCancel}>
+            <Button type='text' onClick={onSwitchTab}>
               Cancel
             </Button>
           </div>
