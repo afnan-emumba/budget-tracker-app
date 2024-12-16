@@ -2,6 +2,7 @@ import { Card, Divider, Input, Button, DatePicker, Select } from "antd";
 import styles from "./EditProfile.module.css";
 
 const { Option } = Select;
+const { TextArea } = Input;
 
 const EditProfile = () => {
   return (
@@ -87,6 +88,12 @@ const EditProfile = () => {
               </Select>
             </div>
           </div>
+          <div className={styles.inputGroup}>
+            <label>About Me</label>
+            <div className={styles.inputRow}>
+              <TextArea rows={3} placeholder='About me' />
+            </div>
+          </div>
         </div>
         <Divider />
         <div className={styles.section}>
@@ -99,7 +106,9 @@ const EditProfile = () => {
           </div>
         </div>
         <div className={styles.buttonRow}>
-          <Button type='primary'>Update</Button>
+          <Button type='primary' htmlType='submit'>
+            Update
+          </Button>
           <Button type='text'>Cancel</Button>
         </div>
       </Card>
