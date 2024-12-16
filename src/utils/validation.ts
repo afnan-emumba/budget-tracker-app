@@ -45,3 +45,33 @@ export const expenseValidationSchema = Yup.object().shape({
   price: Yup.number().required("Price is required"),
   date: Yup.string().required("Date is required"),
 });
+
+export const profileValidationSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .max(50, "First name must be at most 50 characters")
+    .required("First name is required"),
+  middleName: Yup.string().max(50, "Middle name must be at most 50 characters"),
+  lastName: Yup.string()
+    .max(50, "Last name must be at most 50 characters")
+    .required("Last name is required"),
+  aboutMe: Yup.string().max(500, "About me must be at most 500 characters"),
+  gender: Yup.string().oneOf(
+    ["male", "female", "rather_not_say"],
+    "Invalid gender"
+  ),
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  website: Yup.string().url("Invalid URL format"),
+  phoneNumber: Yup.string(),
+  education: Yup.string(),
+  streetAddress: Yup.string(),
+  city: Yup.string(),
+  state: Yup.string(),
+  zipCode: Yup.number(),
+  dateOfBirth: Yup.string(),
+  budgetLimit: Yup.number()
+    .min(1, "Budget limit must be at least 1")
+    .max(99999999, "Budget limit must be at most 99999999")
+    .required("Budget limit is required"),
+});
