@@ -60,6 +60,7 @@ const Signup = () => {
             state: "",
             zipCode: "",
             dateOfBirth: "",
+            profilePicture: "",
             budgetLimit: parseFloat(values.budget),
             isLoggedIn: false,
           })
