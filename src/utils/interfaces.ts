@@ -16,6 +16,7 @@ export interface User {
   zipCode: string;
   dateOfBirth: string;
   budgetLimit: number;
+  profilePicture: string;
   isLoggedIn: boolean;
 }
 

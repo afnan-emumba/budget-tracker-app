@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router";
-import { Divider } from "antd";
+import { Divider, Alert } from "antd";
 import { BackArrowIcon } from "../../assets/icons";
 import ProfileSideCard from "../../components/profileSideCard/ProfileSideCard";
 import ProfileDetails from "../../components/profileDetails/ProfileDetails";
@@ -10,9 +10,17 @@ import { useState } from "react";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("profile");
+  const [alertVisible, setAlertVisible] = useState(false);
 
   const handleSwitchTab = () => {
     setActiveTab("profile");
+  };
+
+  const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(e);
+    setTimeout(() => {
+      setAlertVisible(false);
+    }, 300);
   };
 
   return (
@@ -65,10 +73,25 @@ const Profile = () => {
           <ProfileSideCard />
           {activeTab === "profile" && <ProfileDetails />}
           {activeTab === "account" && (
-            <EditProfile onSwitchTab={handleSwitchTab} />
+            <EditProfile
+              onSwitchTab={handleSwitchTab}
+              showAlert={() => setAlertVisible(true)}
+            />
           )}
         </div>
       </div>
+
+      {alertVisible && (
+        <Alert
+          message='Success!'
+          description='Profile updated successfully.'
+          type='success'
+          showIcon
+          closable
+          onClose={onClose}
+          className={styles.alert}
+        />
+      )}
     </>
   );
 };

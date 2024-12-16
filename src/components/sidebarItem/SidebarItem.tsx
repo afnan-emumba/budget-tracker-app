@@ -21,9 +21,9 @@ const SidebarItem = ({
 }: SidebarItemProps & { onClick: () => void }) => {
   return (
     <div
-      className={`${styles.sidebarItemContainer} ${isSelected ? styles.selected : ""} ${
-        isVisible ? "" : styles.collapse
-      }`}
+      className={`${styles.sidebarItemContainer} ${
+        isSelected ? styles.selected : ""
+      } ${isVisible ? "" : styles.collapse}`}
     >
       <li>
         <Link
@@ -32,13 +32,17 @@ const SidebarItem = ({
           onClick={onClick}
           title={text}
         >
-          <div className={`${styles.sidebarIcon} ${isSelected ? styles.selected : ""}`}>
+          <div
+            className={`${styles.sidebarIcon} ${
+              isSelected ? styles.selected : ""
+            }`}
+          >
             {icon}
           </div>
           <p
-            className={`${styles.sidebarText} ${isSelected ? styles.selected : ""} ${
-              isVisible ? "" : styles.collapse
-            }`}
+            className={`${styles.sidebarText} ${
+              isSelected ? styles.selected : ""
+            } ${isVisible ? "" : styles.collapse}`}
           >
             {text}
           </p>

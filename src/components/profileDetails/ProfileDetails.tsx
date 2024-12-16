@@ -35,7 +35,8 @@ const ProfileDetails = () => {
               <div>
                 <p>Full Name</p>
                 <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
-                  {loggedInUser.firstName} {loggedInUser.lastName}
+                  {loggedInUser.firstName} {loggedInUser.middleName}{" "}
+                  {loggedInUser.lastName}
                 </p>
               </div>
             )}
@@ -43,7 +44,11 @@ const ProfileDetails = () => {
               <div>
                 <p>Gender</p>
                 <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
-                  {loggedInUser.gender}
+                  {loggedInUser.gender === "male"
+                    ? "Male"
+                    : loggedInUser.gender === "female"
+                    ? "Female"
+                    : "Rather not say"}
                 </p>
               </div>
             )}

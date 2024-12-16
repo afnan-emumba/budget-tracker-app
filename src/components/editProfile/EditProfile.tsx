@@ -6,13 +6,38 @@ import { RootState } from "../../redux/store";
 import { updateUser } from "../../redux/slices/usersSlice";
 import { profileValidationSchema } from "../../utils/validation";
 import styles from "./EditProfile.module.css";
+import { useState } from "react";
 
 const { Option } = Select;
 const { TextArea } = Input;
 
-const EditProfile = ({ onSwitchTab }: { onSwitchTab: () => void }) => {
+const EditProfile = ({
+  onSwitchTab,
+  showAlert,
+}: {
+  onSwitchTab: () => void;
+  showAlert: () => void;
+}) => {
   const users = useSelector((state: RootState) => state.user.users);
   const loggedInUser = users.find((user) => user.isLoggedIn);
+  const [profilePicture, setProfilePicture] = useState(
+    loggedInUser?.profilePicture || ""
+  );
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfilePicture(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemovePicture = () => {
+    setProfilePicture("");
+  };
 
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -37,6 +62,7 @@ const EditProfile = ({ onSwitchTab }: { onSwitchTab: () => void }) => {
     onSubmit: (values) => {
       const formattedValues = {
         ...values,
+        profilePicture,
         dateOfBirth: values.dateOfBirth
           ? dayjs(values.dateOfBirth).format("YYYY-MM-DD")
           : "",
@@ -45,30 +71,21 @@ const EditProfile = ({ onSwitchTab }: { onSwitchTab: () => void }) => {
       if (loggedInUser) {
         dispatch(
           updateUser({
-            userId: loggedInUser.userId,
-            firstName: formattedValues.firstName,
-            middleName: formattedValues.middleName,
-            lastName: formattedValues.lastName,
-            aboutMe: formattedValues.aboutMe,
-            gender: formattedValues.gender,
-            email: formattedValues.email,
-            password: loggedInUser.password,
-            website: formattedValues.website,
-            phoneNumber: formattedValues.phoneNumber,
-            education: formattedValues.education,
-            streetAddress: formattedValues.streetAddress,
-            city: formattedValues.city,
-            state: formattedValues.state,
-            zipCode: formattedValues.zipCode,
-            dateOfBirth: formattedValues.dateOfBirth,
-            budgetLimit: formattedValues.budgetLimit,
-            isLoggedIn: loggedInUser.isLoggedIn,
+            ...loggedInUser,
+            ...formattedValues,
           })
         );
+        showAlert();
+        window.scrollTo({ top: 0, behavior: "smooth" });
         onSwitchTab();
       }
     },
   });
+
+  const onCancel = () => {
+    onSwitchTab();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className={styles.editProfileSection}>
@@ -333,11 +350,45 @@ const EditProfile = ({ onSwitchTab }: { onSwitchTab: () => void }) => {
               </div>
             </div>
           </div>
+          <Divider />
+          <div className={styles.section}>
+            <h3>Profile Picture</h3>
+            <div className={styles.inputRow}>
+              <div className={styles.profileGroup}>
+                <input
+                  type='file'
+                  accept='image/*'
+                  onChange={handleFileChange}
+                  style={{}}
+                />
+                {profilePicture && (
+                  <>
+                    <img
+                      src={profilePicture}
+                      alt='Profile'
+                      className={styles.profilePicture}
+                    />
+                    <Button
+                      color='danger'
+                      variant='solid'
+                      style={{
+                        width: "50%",
+                      }}
+                      onClick={handleRemovePicture}
+                    >
+                      Remove Picture
+                    </Button>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+          <Divider />
           <div className={styles.buttonRow}>
             <Button type='primary' htmlType='submit'>
               Update
             </Button>
-            <Button type='text' onClick={onSwitchTab}>
+            <Button type='text' onClick={onCancel}>
               Cancel
             </Button>
           </div>

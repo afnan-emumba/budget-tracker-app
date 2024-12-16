@@ -7,6 +7,7 @@ import {
   LocationIcon,
   LinkIcon,
 } from "../../assets/icons";
+import Placeholder from "../../assets/images/placeholder_avatar.jpg";
 import styles from "./ProfileSideCard.module.css";
 
 const ProfileSideCard = () => {
@@ -37,14 +38,9 @@ const ProfileSideCard = () => {
           }}
         >
           <img
-            src='https://randomuser.me/api/portraits/men/1.jpg'
+            src={loggedInUser?.profilePicture || Placeholder}
             alt='avatar'
-            style={{
-              width: 100,
-              height: 100,
-              borderRadius: "50%",
-              marginBottom: "1rem",
-            }}
+            className={styles.avatar}
           />
           <h3>
             {loggedInUser?.firstName} {loggedInUser?.lastName}
@@ -83,7 +79,7 @@ const ProfileSideCard = () => {
               <p>{loggedInUser.email}</p>
             </div>
           )}
-          {loggedInUser?.streetAddress && (
+          {(loggedInUser?.city || loggedInUser?.state) && (
             <div
               style={{
                 display: "flex",
@@ -93,8 +89,8 @@ const ProfileSideCard = () => {
             >
               <LocationIcon />
               <p>
-                {loggedInUser.streetAddress}, {loggedInUser.city},{" "}
-                {loggedInUser.state}, {loggedInUser.zipCode}
+                {loggedInUser.city && `${loggedInUser.city}, `}
+                {loggedInUser.state && `${loggedInUser.state}`}
               </p>
             </div>
           )}
