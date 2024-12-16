@@ -1,8 +1,6 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router";
 import { Divider } from "antd";
-// import { useSelector } from "react-redux";
-// import { RootState } from "../../redux/store";
 import { BackArrowIcon } from "../../assets/icons";
 import ProfileSideCard from "../../components/profileSideCard/ProfileSideCard";
 import ProfileDetails from "../../components/profileDetails/ProfileDetails";
@@ -12,9 +10,6 @@ import { useState } from "react";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("profile");
-
-  // const users = useSelector((state: RootState) => state.user.users);
-  // const loggedInUser = users.find((user) => user.isLoggedIn);
 
   return (
     <>

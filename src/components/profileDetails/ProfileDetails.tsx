@@ -1,33 +1,17 @@
 import { Card } from "antd";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 import styles from "./ProfileDetails.module.css";
 
-const userDetails = [
-  {
-    firstName: "Michel",
-    lastName: "Johnson",
-    gender: "Male",
-    email: "michel.johnson@example.com",
-    website: "micheljohnson.com",
-    education: "Bachelor's in Design",
-    address: "1234 Elm Street, Springfield, IL",
-    phone: "+1 234 567 890",
-    zipCode: "62704",
-    dateOfBirth: "1990-01-01",
-    budgetLimit: 5000,
-  },
-];
-
 const ProfileDetails = () => {
+  const users = useSelector((state: RootState) => state.user.users);
+  const loggedInUser = users.find((user) => user.isLoggedIn);
+
   return (
     <div className={styles.profileSection}>
       <Card className={styles.profileCard} title='About Me'>
         <p>
-          Passionate UI/UX designer with over 5 years of experience in
-          creating user-friendly and visually appealing digital
-          experiences. Skilled in wireframing, prototyping, and user
-          research to deliver intuitive designs. Committed to enhancing
-          user satisfaction through innovative and effective design
-          solutions.
+          {loggedInUser?.aboutMe || "No information available about the user."}
         </p>
       </Card>
       <Card className={styles.profileCard} title='Personal Details'>
@@ -47,36 +31,46 @@ const ProfileDetails = () => {
               gap: "2rem",
             }}
           >
-            <div>
-              <p>Full Name</p>
-              <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
-                {userDetails[0].firstName} {userDetails[0].lastName}
-              </p>
-            </div>
-            <div>
-              <p>Gender</p>
-              <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
-                {userDetails[0].gender}
-              </p>
-            </div>
-            <div>
-              <p>Email</p>
-              <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
-                {userDetails[0].email}
-              </p>
-            </div>
-            <div>
-              <p>Education</p>
-              <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
-                {userDetails[0].education}
-              </p>
-            </div>
-            <div>
-              <p>Address</p>
-              <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
-                {userDetails[0].address}
-              </p>
-            </div>
+            {loggedInUser?.firstName && loggedInUser?.lastName && (
+              <div>
+                <p>Full Name</p>
+                <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
+                  {loggedInUser.firstName} {loggedInUser.lastName}
+                </p>
+              </div>
+            )}
+            {loggedInUser?.gender && (
+              <div>
+                <p>Gender</p>
+                <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
+                  {loggedInUser.gender}
+                </p>
+              </div>
+            )}
+            {loggedInUser?.email && (
+              <div>
+                <p>Email</p>
+                <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
+                  {loggedInUser.email}
+                </p>
+              </div>
+            )}
+            {loggedInUser?.education && (
+              <div>
+                <p>Education</p>
+                <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
+                  {loggedInUser.education}
+                </p>
+              </div>
+            )}
+            {loggedInUser?.streetAddress && (
+              <div>
+                <p>Address</p>
+                <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
+                  {loggedInUser.streetAddress}
+                </p>
+              </div>
+            )}
           </div>
           <div
             style={{
@@ -85,30 +79,38 @@ const ProfileDetails = () => {
               gap: "2rem",
             }}
           >
-            <div>
-              <p>Phone</p>
-              <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
-                {userDetails[0].phone}
-              </p>
-            </div>
-            <div>
-              <p>Zip Code</p>
-              <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
-                {userDetails[0].zipCode}
-              </p>
-            </div>
-            <div>
-              <p>Date of Birth</p>
-              <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
-                {userDetails[0].dateOfBirth}
-              </p>
-            </div>
-            <div>
-              <p>Budget Limit</p>
-              <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
-                {userDetails[0].budgetLimit} PKR
-              </p>
-            </div>
+            {loggedInUser?.phoneNumber && (
+              <div>
+                <p>Phone</p>
+                <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
+                  {loggedInUser.phoneNumber}
+                </p>
+              </div>
+            )}
+            {loggedInUser?.zipCode && (
+              <div>
+                <p>Zip Code</p>
+                <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
+                  {loggedInUser.zipCode}
+                </p>
+              </div>
+            )}
+            {loggedInUser?.dateOfBirth && (
+              <div>
+                <p>Date of Birth</p>
+                <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
+                  {loggedInUser.dateOfBirth}
+                </p>
+              </div>
+            )}
+            {loggedInUser?.budgetLimit && (
+              <div>
+                <p>Budget Limit</p>
+                <p style={{ color: "#2B2B2B", fontWeight: "600" }}>
+                  {loggedInUser.budgetLimit} PKR
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </Card>
