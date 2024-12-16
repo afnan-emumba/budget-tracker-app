@@ -40,5 +40,13 @@ export const antTheme = {
     Modal: {
       titleFontSize: 20,
     },
+    Alert: {
+      colorSuccess: "#08B461",
+      colorSuccessBg: "#E1F3EC",
+      colorSuccessBorder: "#3EC484",
+      colorError: "#EA3B3B",
+      colorErrorBg: "#F3E1EA",
+      colorErrorBorder: "#C43E5E",
+    },
   },
 };

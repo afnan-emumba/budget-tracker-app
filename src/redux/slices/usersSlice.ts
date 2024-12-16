@@ -1,28 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface User {
-  userId: number;
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  bio: string;
-  gender: string;
-  email: string;
-  password: string;
-  website: string;
-  education: string;
-  streetAddress: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  dateOfBirth: string;
-  budgetLimit: number;
-  isLoggedIn: boolean;
-}
-
-interface UsersState {
-  users: User[];
-}
+import { User, UsersState } from "../../utils/interfaces";
 
 const initialState: UsersState = {
   users: [],

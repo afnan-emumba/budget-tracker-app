@@ -1,18 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-
-export interface Expense {
-  key: number;
-  userId: number;
-  expense: string;
-  price: string;
-  date: string;
-}
-
-export interface ExpensesState {
-  expenses: Expense[];
-}
+import { Expense, ExpensesState } from "../../utils/interfaces";
 
 const initialState: ExpensesState = {
   expenses: [],

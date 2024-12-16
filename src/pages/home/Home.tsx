@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
+import dayjs from "dayjs";
 import {
   Button,
   Divider,
@@ -10,6 +11,7 @@ import {
   Select,
   Input,
   DatePicker,
+  Alert,
 } from "antd";
 import { ColumnType } from "antd/es/table";
 import {
@@ -26,15 +28,7 @@ import {
   deleteExpense,
   updateExpense,
 } from "../../redux/slices/expensesSlice";
-import dayjs from "dayjs";
-
-export interface ExpenseData {
-  key: number;
-  userId: number;
-  expense: string;
-  price: string;
-  date: string;
-}
+import { Expense } from "../../utils/interfaces";
 
 const { Option } = Select;
 
@@ -44,13 +38,14 @@ const Home = () => {
   const [modalType, setModalType] = useState<"add" | "edit" | "delete" | null>(
     null
   );
-  const [selectedExpense, setSelectedExpense] = useState<ExpenseData | null>(
-    null
-  );
+  const [selectedExpense, setSelectedExpense] = useState<Expense | null>(null);
   const [sortOrder, setSortOrder] = useState<"ascend" | "descend" | null>(null);
-  const [sortField, setSortField] = useState<keyof ExpenseData | null>(null);
+  const [sortField, setSortField] = useState<keyof Expense | null>(null);
   const [filterDate, setFilterDate] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState<"success" | "error">("success");
 
   const users = useSelector((state: RootState) => state.user.users);
   const expenses = useSelector((state: RootState) => state.expenses.expenses);
@@ -145,22 +140,31 @@ const Home = () => {
     setModalType("edit");
   };
 
-  const handleAddExpense = (expense: ExpenseData) => {
+  const handleAddExpense = (expense: Expense) => {
     if (loggedInUser) {
       const newExpense = { ...expense, userId: loggedInUser.userId };
       dispatch(addExpense(newExpense));
       setModalType(null);
+      setAlertMessage("Expense Added Successfully!");
+      setAlertType("success");
+      setAlertVisible(true);
     }
   };
 
-  const handleEditExpense = (expense: ExpenseData) => {
+  const handleEditExpense = (expense: Expense) => {
     dispatch(updateExpense(expense));
     setModalType(null);
+    setAlertMessage("Expense Updated Successfully!");
+    setAlertType("success");
+    setAlertVisible(true);
   };
 
   const handleDeleteExpense = (key: number) => {
     dispatch(deleteExpense(key));
     setModalType(null);
+    setAlertMessage("Expense Deleted Successfully!");
+    setAlertType("error");
+    setAlertVisible(true);
 
     const totalRecordsAfterDeletion = userExpenses.length - 1;
     const totalPagesAfterDeletion = Math.ceil(
@@ -171,7 +175,7 @@ const Home = () => {
     }
   };
 
-  const tableColumns: ColumnType<ExpenseData>[] = [
+  const tableColumns: ColumnType<Expense>[] = [
     {
       title: "Expense",
       dataIndex: "expense",
@@ -322,6 +326,18 @@ const Home = () => {
             />
           </div>
         </div>
+
+        {alertVisible && (
+          <Alert
+            message='Success!'
+            description={alertMessage}
+            type={alertType}
+            showIcon
+            closable
+            onClose={() => setAlertVisible(false)}
+            className={styles.alert}
+          />
+        )}
 
         <div className='modals'>
           <ModalDialog

@@ -69,6 +69,15 @@
     padding: 16px 16px;
 }
 
+.alert {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 2rem;
+    margin-top: 5rem;
+    width: 400px;
+}
+
 /* Ant Overrides */
 
 .homeContent :global(.ant-pagination-item) {
