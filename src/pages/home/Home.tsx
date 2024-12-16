@@ -175,6 +175,13 @@ const Home = () => {
     }
   };
 
+  const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(e);
+    setTimeout(() => {
+      setAlertVisible(false);
+    }, 300);
+  };
+
   const tableColumns: ColumnType<Expense>[] = [
     {
       title: "Expense",
@@ -334,7 +341,7 @@ const Home = () => {
             type={alertType}
             showIcon
             closable
-            onClose={() => setAlertVisible(false)}
+            onClose={onClose}
             className={styles.alert}
           />
         )}
