@@ -25,8 +25,8 @@ const Analysis = () => {
     let data = [];
 
     if (range === "1") {
-      const daysInMonth = now.daysInMonth();
-      for (let i = 1; i <= daysInMonth; i++) {
+      const currentDate = now.date();
+      for (let i = 1; i <= currentDate; i++) {
         const day = now.date(i).format("YYYY-MM-DD");
         const total = filteredExpenses
           .filter((expense) => dayjs(expense.date).isSame(day, "day"))
