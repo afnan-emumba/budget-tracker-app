@@ -19,6 +19,7 @@ import {
   EditIcon,
   SearchIcon1,
   CalendarIcon,
+  AlertIcon,
 } from "../../assets/icons";
 import styles from "./Home.module.css";
 import ModalDialog from "../../components/modal/ModalDialog";
@@ -45,6 +46,7 @@ const Home = () => {
   const [filterDate, setFilterDate] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [alertVisible, setAlertVisible] = useState(false);
+  const [alertHeading, setAlertHeading] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [alertType, setAlertType] = useState<"success" | "error">("success");
 
@@ -157,6 +159,7 @@ const Home = () => {
         })
       );
       setModalType(null);
+      setAlertHeading("Expense Added");
       setAlertMessage("Expense Added Successfully!");
       setAlertType("success");
       setAlertVisible(true);
@@ -177,6 +180,7 @@ const Home = () => {
       })
     );
     setModalType(null);
+    setAlertHeading("Expense Updated");
     setAlertMessage("Expense Updated Successfully!");
     setAlertType("success");
     setAlertVisible(true);
@@ -198,6 +202,7 @@ const Home = () => {
         })
       );
       setModalType(null);
+      setAlertHeading("Expense Deleted");
       setAlertMessage("Expense Deleted Successfully!");
       setAlertType("error");
       setAlertVisible(true);
@@ -373,10 +378,15 @@ const Home = () => {
 
         {alertVisible && (
           <Alert
-            message='Success!'
+            message={alertHeading}
             description={alertMessage}
             type={alertType}
             showIcon
+            icon={
+              <AlertIcon
+                fillColour={alertType === "success" ? "#08B461" : "#EA3B3B"}
+              />
+            }
             closable
             onClose={onClose}
             className={styles.alert}

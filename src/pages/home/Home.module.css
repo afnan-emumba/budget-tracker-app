@@ -76,6 +76,8 @@
     width: 400px;
     overflow: hidden;
     animation: slideIn 0.2s ease-out;
+    border-radius: 10px;
+    gap: 1rem;
 }
 
 @keyframes slideIn {
@@ -108,4 +110,8 @@
 
 .homeContent :global(.ant-select-selection-item) {
     color: #BCC0C9 !important;
+}
+
+.homeContent :global(.ant-alert-message) {
+    font-weight: 600 !important;
 }
