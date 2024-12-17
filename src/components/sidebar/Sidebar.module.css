@@ -1,5 +1,4 @@
 .sidebar {
-    width: auto;
     min-height: 100vh;
     height: auto;
     box-sizing: border-box;
@@ -11,18 +10,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 20px;
     height: 5rem;
     border-bottom: 1px solid #EEEEEE;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
 }
 
+.collapased .sidebarLogo {
+    justify-content: center;
+}
+
 .sidebarContent {
-    padding: 2rem;
+    padding: 20px;
 }
 
 .sidebar.collapsed {
-    width: auto;
+    width: 80px;
 }
 
 .sidebarContent ul {

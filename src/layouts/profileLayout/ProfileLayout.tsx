@@ -6,7 +6,7 @@ const ProfileLayout = () => {
   return (
     <div className='profile-layout'>
       <Navbar showLogo={true} showMenuIcon={false} />
-      <div className='content'>
+      <div className='profile-content'>
         <Outlet />
       </div>
     </div>

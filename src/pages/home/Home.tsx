@@ -348,7 +348,7 @@ const Home = () => {
                     value={searchTerm}
                     onChange={handleSearchChange}
                     style={{
-                      width: 270,
+                      width: 350,
                       borderColor: "#E1E8F2",
                       borderRadius: "4px",
                     }}

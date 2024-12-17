@@ -52,7 +52,7 @@ const ProfileSideCard = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "start",
-            gap: "1rem",
+            gap: "15px",
           }}
         >
           {loggedInUser?.phoneNumber && (

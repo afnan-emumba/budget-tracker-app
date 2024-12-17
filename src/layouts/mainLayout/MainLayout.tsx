@@ -18,7 +18,7 @@ const MainLayout = () => {
         className={`main-content ${sidebarVisible ? "expanded" : "collapsed"}`}
       >
         <Navbar toggleSidebar={toggleSidebar} />
-        <div className='content'>
+        <div className='main-page'>
           <Outlet />
         </div>
       </div>

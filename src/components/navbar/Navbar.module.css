@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     height: 5rem;
-    padding: 0 3rem;
+    padding: 0 28px;
     border-bottom: 1px solid #EEEEEE;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
@@ -12,25 +12,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 30px;
 }
 
 .userAvatar {
     .avatar {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
         border-radius: 50%;
-        margin: 20px auto;
         display: block;
         object-fit: cover;
     }
 }
 
-
-
 .sidebarToggleButton {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     height: 50px;
     width: 50px;

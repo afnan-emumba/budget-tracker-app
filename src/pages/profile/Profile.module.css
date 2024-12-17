@@ -21,7 +21,7 @@
 .profileCardsContainer {
     display: flex;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 30px;
 }
 
 .profileSection {

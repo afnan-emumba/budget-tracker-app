@@ -21,7 +21,7 @@
 .inputRow {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 16px;
     margin-bottom: 1rem;
 }
 
