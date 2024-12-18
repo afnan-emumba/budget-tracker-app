@@ -11,7 +11,7 @@ import ProfileLayout from "./layouts/profileLayout/ProfileLayout";
 import Signup from "./pages/auth/signup/Signup";
 import Login from "./pages/auth/login/Login";
 import ForgotPassword from "./pages/auth/forgotPassword/ForgotPassword";
-import Expenses from "./pages/home/Expenses";
+import Expenses from "./pages/expenses/Expenses";
 import Analysis from "./pages/analysis/Analysis";
 import Profile from "./pages/profile/Profile";
 import { antTheme } from "./theme/theme";
