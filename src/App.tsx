@@ -11,7 +11,7 @@ import ProfileLayout from "./layouts/profileLayout/ProfileLayout";
 import Signup from "./pages/auth/signup/Signup";
 import Login from "./pages/auth/login/Login";
 import ForgotPassword from "./pages/auth/forgotPassword/ForgotPassword";
-import Home from "./pages/home/Home";
+import Expenses from "./pages/home/Expenses";
 import Analysis from "./pages/analysis/Analysis";
 import Profile from "./pages/profile/Profile";
 import { antTheme } from "./theme/theme";
@@ -44,7 +44,7 @@ function App() {
                     </PrivateRoute>
                   }
                 >
-                  <Route path='/' element={<Home />} />
+                  <Route path='/' element={<Expenses />} />
                   <Route path='/analysis' element={<Analysis />} />
                 </Route>
 

@@ -18,7 +18,7 @@ import {
   AlertIcon,
   CloseIcon,
 } from "../../assets/icons";
-import styles from "./Home.module.css";
+import styles from "./Expenses.module.css";
 import ModalDialog from "../../components/modal/ModalDialog";
 import { RootState } from "../../redux/store";
 import {
@@ -32,7 +32,7 @@ import tableColumns from "./TableColumns";
 
 const { Option } = Select;
 
-const Home = () => {
+const Expenses = () => {
   const [pageSize, setPageSize] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [modalType, setModalType] = useState<"add" | "edit" | "delete" | null>(
@@ -371,4 +371,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Expenses;
