@@ -8,15 +8,11 @@ import {
   Divider,
   Table,
   Pagination,
-  Progress,
   Select,
   Input,
   DatePicker,
 } from "antd";
-import { ColumnType } from "antd/es/table";
 import {
-  DeleteIcon,
-  EditIcon,
   SearchIcon1,
   CalendarIcon,
   AlertIcon,
@@ -32,6 +28,7 @@ import {
 } from "../../redux/slices/expensesSlice";
 import { Expense } from "../../utils/interfaces";
 import { addNotification } from "../../redux/slices/notificationsSlice";
+import tableColumns from "./TableColumns";
 
 const { Option } = Select;
 
@@ -263,69 +260,7 @@ const Home = () => {
     }
   };
 
-  const tableColumns: ColumnType<Expense>[] = [
-    {
-      title: "Expense",
-      dataIndex: "expense",
-      key: "expense",
-      width: 200,
-      ellipsis: true,
-    },
-    {
-      title: "Total Expenditure",
-      dataIndex: "price",
-      key: "totalExpenditure",
-      width: 150,
-      render: (text: string) => (
-        <Progress
-          percent={Math.round(
-            (parseFloat(text) / (loggedInUser?.budgetLimit || 1)) * 100
-          )}
-        />
-      ),
-    },
-    {
-      title: "Price (PKR)",
-      dataIndex: "price",
-      key: "price",
-      align: "right",
-      width: 100,
-    },
-    {
-      title: "Date",
-      dataIndex: "date",
-      key: "date",
-      width: 100,
-      render: (text: string) => dayjs(text).format("YYYY-MM-DD"),
-    },
-    {
-      title: "Actions",
-      key: "actions",
-      align: "center",
-      width: 150,
-      render: (record) => (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "4px",
-          }}
-        >
-          <Button
-            type='text'
-            icon={<DeleteIcon />}
-            onClick={() => onDelete(record.key)}
-          />
-          <Button
-            type='text'
-            icon={<EditIcon />}
-            onClick={() => onEdit(record.key)}
-          />
-        </div>
-      ),
-    },
-  ];
+  const tableColumnsConfig = tableColumns(onDelete, onEdit, loggedInUser);
 
   useEffect(() => {
     calculatePageSize();
@@ -352,7 +287,7 @@ const Home = () => {
         <Divider />
         <div className={styles.expenseTable}>
           <Table
-            columns={tableColumns}
+            columns={tableColumnsConfig}
             dataSource={paginatedData}
             pagination={false}
             title={() => (
