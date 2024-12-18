@@ -10,6 +10,7 @@ import { validationSchema } from "../../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../../redux/slices/usersSlice";
 import { RootState } from "../../../redux/store";
+import { defaultUser } from "./defaultUser";
 
 const Signup = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -45,24 +46,9 @@ const Signup = () => {
         dispatch(
           setUser({
             userId: Date.now(),
-            firstName: values.firstName,
-            middleName: "",
-            lastName: values.lastName,
-            aboutMe: "",
-            gender: "",
-            email: values.email,
-            password: values.password,
-            website: "",
-            phoneNumber: "",
-            education: "",
-            streetAddress: "",
-            city: "",
-            state: "",
-            zipCode: "",
-            dateOfBirth: "",
-            profilePicture: "",
+            ...defaultUser,
+            ...values,
             budgetLimit: parseFloat(values.budget),
-            isLoggedIn: false,
           })
         );
         navigate("/login");
