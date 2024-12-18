@@ -41,7 +41,7 @@ const tableColumns = (
     dataIndex: "date",
     key: "date",
     width: 100,
-    render: (text: string) => dayjs(text).format("YYYY-MM-DD"),
+    render: (text: string) => dayjs(text).format("DD MMM YYYY"),
   },
   {
     title: "Actions",
