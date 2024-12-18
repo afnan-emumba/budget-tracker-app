@@ -12,5 +12,5 @@
     padding: 16px 28px;
     box-sizing: border-box;
     background-color: #ebf1f3;
-    min-height: calc(100vh - 5rem);
+    min-height: calc(100vh - 90px);
 }
