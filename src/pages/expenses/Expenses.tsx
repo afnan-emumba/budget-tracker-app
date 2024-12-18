@@ -95,20 +95,19 @@ const Expenses = () => {
     )
     .filter((expense) =>
       expense.expense.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-  const sortedExpenses = [...filteredExpenses]
-    .sort((a, b) => {
-      if (!sortField || !sortOrder) return 0;
-      const aValue =
-        sortField === "price" ? parseFloat(a[sortField]) : a[sortField];
-      const bValue =
-        sortField === "price" ? parseFloat(b[sortField]) : b[sortField];
-      if (aValue < bValue) return sortOrder === "ascend" ? -1 : 1;
-      if (aValue > bValue) return sortOrder === "ascend" ? 1 : -1;
-      return 0;
-    })
+    )
     .reverse();
+
+  const sortedExpenses = [...filteredExpenses].sort((a, b) => {
+    if (!sortField || !sortOrder) return 0;
+    const aValue =
+      sortField === "price" ? parseFloat(a[sortField]) : a[sortField];
+    const bValue =
+      sortField === "price" ? parseFloat(b[sortField]) : b[sortField];
+    if (aValue < bValue) return sortOrder === "ascend" ? -1 : 1;
+    if (aValue > bValue) return sortOrder === "ascend" ? 1 : -1;
+    return 0;
+  });
 
   const paginatedData = sortedExpenses.slice(
     (currentPage - 1) * pageSize,
