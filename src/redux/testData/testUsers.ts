@@ -11,7 +11,7 @@ export const testUsers: Array<User> = [
     gender: "male",
     email: "john@example.com",
     password: "12345678",
-    website: "https://johndoe.com",
+    website: "www.johndoe.com",
     phoneNumber: "03001234567",
     education: "Bachelor's Degree in Computer Science",
     streetAddress: "123 Main St",
