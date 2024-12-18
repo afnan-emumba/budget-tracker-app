@@ -7,18 +7,10 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute = ({ children }: PrivateRouteProps) => {
-  const users = useSelector((state: RootState) => state.user.users);
-  const isLoggedIn = users.some((user) => user.isLoggedIn);
+  const isLoggedIn = useSelector((state: RootState) =>
+    state.user.users.some((user) => user.isLoggedIn)
+  );
   const location = useLocation();
-
-  if (
-    isLoggedIn &&
-    (location.pathname === "/login" ||
-      location.pathname === "/signup" ||
-      location.pathname === "/reset-password")
-  ) {
-    return <Navigate to='/' />;
-  }
 
   if (
     !isLoggedIn &&
@@ -27,6 +19,15 @@ const PrivateRoute = ({ children }: PrivateRouteProps) => {
     location.pathname !== "/reset-password"
   ) {
     return <Navigate to='/login' />;
+  }
+
+  if (
+    isLoggedIn &&
+    (location.pathname === "/login" ||
+      location.pathname === "/signup" ||
+      location.pathname === "/reset-password")
+  ) {
+    return <Navigate to='/' />;
   }
 
   return children;

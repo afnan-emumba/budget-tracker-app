@@ -1,14 +1,19 @@
+import { ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 import Logo from "../../components/logo/Logo";
 import "./AuthLayout.css";
 
-const AuthLayout = () => {
+interface AuthLayoutProps {
+  children?: ReactNode;
+}
+
+const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
     <>
       <div className='auth-logo'>
         <Logo />
       </div>
-      <Outlet />
+      {children || <Outlet />}
     </>
   );
 };
