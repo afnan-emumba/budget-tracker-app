@@ -22,7 +22,7 @@ const Analysis = () => {
 
   const getData = () => {
     const now = dayjs();
-    let data = [];
+    const data = [];
 
     if (range === "1") {
       const currentDate = now.date();
