@@ -48,9 +48,9 @@ const Navbar = ({
   const [isNotificationDrawerOpen, setIsNotificationDrawerOpen] =
     useState(false);
 
-  const handlePopoverVisibleChange = (visible: boolean) => {
-    setIsNotificationDrawerOpen(visible);
-    if (visible) {
+  const handlePopoverOpenChange = (open: boolean) => {
+    setIsNotificationDrawerOpen(open);
+    if (open) {
       dispatch(markNotificationsAsRead());
     }
   };
@@ -60,6 +60,16 @@ const Navbar = ({
 
   const notificationContent = (
     <div className={styles.notificationContent}>
+      {userNotifications.length > 0 && (
+        <Button
+          type='text'
+          size='small'
+          block
+          onClick={handleClearNotifications}
+        >
+          Clear All
+        </Button>
+      )}
       {userNotifications.length > 0 ? (
         [...userNotifications]
           .reverse()
@@ -75,9 +85,6 @@ const Navbar = ({
       ) : (
         <p>No new notifications</p>
       )}
-      <Button type='text' size='small' block onClick={handleClearNotifications}>
-        Clear All
-      </Button>
     </div>
   );
 
@@ -88,6 +95,7 @@ const Navbar = ({
           <MenuIcon />
         </span>
       )}
+
       {showLogo && <Logo />}
       <div className={styles.navbarContent}>
         <Popover
@@ -95,7 +103,7 @@ const Navbar = ({
           trigger='click'
           arrow={false}
           placement='bottomRight'
-          onVisibleChange={handlePopoverVisibleChange}
+          onOpenChange={handlePopoverOpenChange}
         >
           <div className={styles.notificationIcon}>
             <NotificationIcon />

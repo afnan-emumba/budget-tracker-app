@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import dayjs from "dayjs";
+import toast, { Toaster } from "react-hot-toast";
 import {
   Button,
   Divider,
@@ -11,7 +12,6 @@ import {
   Select,
   Input,
   DatePicker,
-  Alert,
 } from "antd";
 import { ColumnType } from "antd/es/table";
 import {
@@ -20,6 +20,7 @@ import {
   SearchIcon1,
   CalendarIcon,
   AlertIcon,
+  CloseIcon,
 } from "../../assets/icons";
 import styles from "./Home.module.css";
 import ModalDialog from "../../components/modal/ModalDialog";
@@ -45,10 +46,6 @@ const Home = () => {
   const [sortField, setSortField] = useState<keyof Expense | null>(null);
   const [filterDate, setFilterDate] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [alertVisible, setAlertVisible] = useState(false);
-  const [alertHeading, setAlertHeading] = useState("");
-  const [alertMessage, setAlertMessage] = useState("");
-  const [alertType, setAlertType] = useState<"success" | "error">("success");
 
   const users = useSelector((state: RootState) => state.user.users);
   const expenses = useSelector((state: RootState) => state.expenses.expenses);
@@ -143,6 +140,63 @@ const Home = () => {
     setModalType("edit");
   };
 
+  const showToast = (type: "add" | "edit" | "delete", message: string) => {
+    const colors = {
+      add: {
+        background: "#E1F3EC",
+        border: "#3EC484",
+        heading: "#08B461",
+        icon: "#08B461",
+      },
+      edit: {
+        background: "#E1F3EC",
+        border: "#3EC484",
+        heading: "#08B461",
+        icon: "#08B461",
+      },
+      delete: {
+        background: "#F3E1EA",
+        border: "#C43E5E",
+        heading: "#EA3B3B",
+        icon: "#EA3B3B",
+      },
+    };
+
+    toast(
+      <div style={{ position: "relative" }}>
+        <h3 style={{ color: colors[type].heading, marginBottom: 8 }}>
+          {type === "add"
+            ? "Expense Added"
+            : type === "edit"
+            ? "Expense Updated"
+            : "Expense Deleted"}
+        </h3>
+        <p style={{ color: "#1A274F" }}>{message}</p>
+        <Button
+          type='text'
+          icon={<CloseIcon />}
+          style={{ position: "absolute", top: -15, right: -20 }}
+          onClick={() => toast.dismiss()}
+        />
+      </div>,
+      {
+        duration: 3000,
+        position: "top-right",
+        style: {
+          background: colors[type].background,
+          border: `1px solid ${colors[type].border}`,
+          padding: "16px",
+          color: colors[type].heading,
+        },
+        icon: <AlertIcon fillColour={colors[type].icon} />,
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      }
+    );
+  };
+
   const handleAddExpense = (expense: Expense) => {
     if (loggedInUser) {
       const newExpense = { ...expense, userId: loggedInUser.userId };
@@ -159,10 +213,7 @@ const Home = () => {
         })
       );
       setModalType(null);
-      setAlertHeading("Expense Added");
-      setAlertMessage("Expense Added Successfully!");
-      setAlertType("success");
-      setAlertVisible(true);
+      showToast("add", "Expense Added Successfully!");
     }
   };
 
@@ -180,10 +231,7 @@ const Home = () => {
       })
     );
     setModalType(null);
-    setAlertHeading("Expense Updated");
-    setAlertMessage("Expense Updated Successfully!");
-    setAlertType("success");
-    setAlertVisible(true);
+    showToast("edit", "Expense Updated Successfully!");
   };
 
   const handleDeleteExpense = (key: number) => {
@@ -202,10 +250,7 @@ const Home = () => {
         })
       );
       setModalType(null);
-      setAlertHeading("Expense Deleted");
-      setAlertMessage("Expense Deleted Successfully!");
-      setAlertType("error");
-      setAlertVisible(true);
+      showToast("delete", "Expense Deleted Successfully!");
 
       const totalRecordsAfterDeletion = userExpenses.length - 1;
       const totalPagesAfterDeletion = Math.ceil(
@@ -215,13 +260,6 @@ const Home = () => {
         setCurrentPage(totalPagesAfterDeletion);
       }
     }
-  };
-
-  const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log(e);
-    setTimeout(() => {
-      setAlertVisible(false);
-    }, 300);
   };
 
   const tableColumns: ColumnType<Expense>[] = [
@@ -310,9 +348,7 @@ const Home = () => {
             Add Expenses
           </Button>
         </div>
-
         <Divider />
-
         <div className={styles.expenseTable}>
           <Table
             columns={tableColumns}
@@ -376,22 +412,12 @@ const Home = () => {
           </div>
         </div>
 
-        {alertVisible && (
-          <Alert
-            message={alertHeading}
-            description={alertMessage}
-            type={alertType}
-            showIcon
-            icon={
-              <AlertIcon
-                fillColour={alertType === "success" ? "#08B461" : "#EA3B3B"}
-              />
-            }
-            closable
-            onClose={onClose}
-            className={styles.alert}
-          />
-        )}
+        <Toaster
+          containerStyle={{
+            top: 90,
+            right: 20,
+          }}
+        />
 
         <div className='modals'>
           <ModalDialog

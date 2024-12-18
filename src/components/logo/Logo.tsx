@@ -10,7 +10,9 @@ const Logo = ({ showText = true }: LogoProps) => {
   return (
     <div className={styles.logo}>
       <img src={LogoMark} alt='Logo Main' className={styles.logoMark} />
-      {showText && <img src={LogoType} alt='Logo Main' className={styles.logoType} />}
+      {showText && (
+        <img src={LogoType} alt='Logo Main' className={styles.logoType} />
+      )}
     </div>
   );
 };
