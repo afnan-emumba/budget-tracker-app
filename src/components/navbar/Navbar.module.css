@@ -67,4 +67,5 @@
     gap: 1rem;
     max-height: 300px;
     overflow-y: auto;
+    z-index: 1000;
 }

@@ -60,28 +60,28 @@ const Navbar = ({
 
   const notificationContent = (
     <div className={styles.notificationContent}>
-      {userNotifications.length > 0 && (
-        <Button
-          type='text'
-          size='small'
-          block
-          onClick={handleClearNotifications}
-        >
-          Clear All
-        </Button>
-      )}
       {userNotifications.length > 0 ? (
-        [...userNotifications]
-          .reverse()
-          .map((notification) => (
-            <Notification
-              key={notification.id}
-              icon={notification.icon}
-              expenseTitle={notification.expenseTitle}
-              message={notification.message}
-              timestamp={notification.timestamp}
-            />
-          ))
+        <>
+          <Button
+            type='text'
+            size='small'
+            block
+            onClick={handleClearNotifications}
+          >
+            Clear All
+          </Button>
+          {[...userNotifications]
+            .reverse()
+            .map((notification) => (
+              <Notification
+                key={notification.id}
+                icon={notification.icon}
+                expenseTitle={notification.expenseTitle}
+                message={notification.message}
+                timestamp={notification.timestamp}
+              />
+            ))}
+        </>
       ) : (
         <p>No new notifications</p>
       )}
