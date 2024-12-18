@@ -27,19 +27,24 @@ const ModalDialog = ({
 }: ModalDialogProps) => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
-  const [date, setDate] = useState(dayjs());
+  const [date, setDate] = useState<dayjs.Dayjs | null>(null);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     if (modalType === "add") {
       setTitle("");
       setPrice("");
-      setDate(dayjs());
+      setDate(null);
     } else if (modalType === "edit" && expense) {
       setTitle(expense.expense);
       setPrice(expense.price);
       setDate(dayjs(expense.date));
     }
   }, [modalType, expense]);
+
+  useEffect(() => {
+    setIsFormValid(title.trim() !== "" && price.trim() !== "" && date !== null);
+  }, [title, price, date]);
 
   const users = useSelector((state: RootState) => state.user.users);
   const loggedInUser = users.find((user) => user.isLoggedIn);
@@ -50,7 +55,7 @@ const ModalDialog = ({
       userId: loggedInUser?.userId || 0,
       expense: title,
       price,
-      date: date.format("YYYY-MM-DD"),
+      date: date?.format("YYYY-MM-DD") || "",
     };
     onAddExpense(newExpense);
   };
@@ -61,7 +66,7 @@ const ModalDialog = ({
         ...expense,
         expense: title,
         price,
-        date: date.format("YYYY-MM-DD"),
+        date: date?.format("YYYY-MM-DD") || "",
       };
       onEditExpense(updatedExpense);
     }
@@ -110,8 +115,9 @@ const ModalDialog = ({
                   <p style={{ color: "#2B2B2B", fontWeight: 500 }}>Date</p>
                   <DatePicker
                     style={{ width: "100%" }}
+                    placeholder='Select date'
                     value={date}
-                    onChange={(date) => setDate(date || dayjs())}
+                    onChange={(date) => setDate(date || null)}
                   />
                 </div>
               </div>
@@ -154,7 +160,7 @@ const ModalDialog = ({
                   <DatePicker
                     style={{ width: "100%" }}
                     value={date}
-                    onChange={(date) => setDate(date || dayjs())}
+                    onChange={(date) => setDate(date || null)}
                   />
                 </div>
               </div>
@@ -270,6 +276,7 @@ const ModalDialog = ({
               type='primary'
               style={{ padding: "20px 0", borderRadius: "8px" }}
               onClick={modalType === "add" ? handleAdd : handleEdit}
+              disabled={!isFormValid}
             >
               {modalType === "add" ? "Add" : "Save"}
             </Button>

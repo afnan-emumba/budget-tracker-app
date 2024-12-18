@@ -4,7 +4,29 @@ import storage from "redux-persist/lib/storage";
 import { Expense, ExpensesState } from "../../utils/interfaces";
 
 const initialState: ExpensesState = {
-  expenses: [],
+  expenses: [
+    {
+      key: 1,
+      userId: 1,
+      expense: "Groceries",
+      price: "800",
+      date: "2024-12-01",
+    },
+    {
+      key: 2,
+      userId: 1,
+      expense: "Utilities",
+      price: "6000",
+      date: "2024-12-02",
+    },
+    {
+      key: 3,
+      userId: 1,
+      expense: "House Rent",
+      price: "12000",
+      date: "2024-09-03",
+    },
+  ],
 };
 
 const expensesSlice = createSlice({

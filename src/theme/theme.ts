@@ -11,6 +11,10 @@ export const antTheme = {
     Button: {
       paddingBlock: 8,
       paddingInline: 16,
+      colorBgDisabled: "red",
+      colorTextDisabled: "white",
+      borderColorDisabled: "transparent",
+      colorBgContainerDisabled: "#B6B6B6",
     },
     Input: {
       paddingBlock: 4,
