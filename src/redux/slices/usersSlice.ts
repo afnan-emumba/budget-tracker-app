@@ -1,30 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User, UsersState } from "../../utils/interfaces";
+import { testUsers } from "../testData/testUsers";
 
 const initialState: UsersState = {
-  users: [
-    {
-      userId: 1,
-      firstName: "John",
-      middleName: "A.",
-      lastName: "Doe",
-      aboutMe: "Demo user for testing",
-      gender: "male",
-      email: "john@example.com",
-      password: "12345678",
-      website: "https://johndoe.com",
-      phoneNumber: "03001234567",
-      education: "Bachelor's Degree in Computer Science",
-      streetAddress: "123 Main St",
-      city: "Anytown",
-      state: "Anystate",
-      zipCode: "12345",
-      dateOfBirth: "1990-01-01",
-      budgetLimit: 50000,
-      profilePicture: "",
-      isLoggedIn: false,
-    },
-  ],
+  users: [...testUsers],
 };
 
 const userSlice = createSlice({
