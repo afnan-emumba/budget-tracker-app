@@ -232,7 +232,8 @@ const Home = () => {
   };
 
   const handleAddExpense = (expense: Expense) => handleExpense(expense, "add");
-  const handleEditExpense = (expense: Expense) => handleExpense(expense, "edit");
+  const handleEditExpense = (expense: Expense) =>
+    handleExpense(expense, "edit");
 
   const handleDeleteExpense = (key: number) => {
     const expense = userExpenses.find((item) => item.key === key);

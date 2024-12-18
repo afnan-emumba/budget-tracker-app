@@ -271,7 +271,11 @@ const ModalDialog = ({
               htmlType='submit'
               type='primary'
               style={{ padding: "20px 0", borderRadius: "8px" }}
-              onClick={modalType === "add" || modalType === "edit" ? handleExpense : onClose}
+              onClick={
+                modalType === "add" || modalType === "edit"
+                  ? handleExpense
+                  : onClose
+              }
               disabled={!isFormValid}
             >
               {modalType === "add" ? "Add" : "Save"}
