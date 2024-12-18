@@ -6,7 +6,8 @@ export const testUsers: Array<User> = [
     firstName: "John",
     middleName: "A.",
     lastName: "Doe",
-    aboutMe: "Demo user for testing",
+    aboutMe:
+      "Hello I am a demo user made for testing, I am a software engineer and I love to code.",
     gender: "male",
     email: "john@example.com",
     password: "12345678",
