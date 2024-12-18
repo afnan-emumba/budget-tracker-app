@@ -49,19 +49,17 @@ const ModalDialog = ({
   const users = useSelector((state: RootState) => state.user.users);
   const loggedInUser = users.find((user) => user.isLoggedIn);
 
-  const handleAdd = () => {
-    const newExpense: Expense = {
-      key: Date.now(),
-      userId: loggedInUser?.userId || 0,
-      expense: title,
-      price,
-      date: date?.format("YYYY-MM-DD") || "",
-    };
-    onAddExpense(newExpense);
-  };
-
-  const handleEdit = () => {
-    if (expense) {
+  const handleExpense = () => {
+    if (modalType === "add") {
+      const newExpense: Expense = {
+        key: Date.now(),
+        userId: loggedInUser?.userId || 0,
+        expense: title,
+        price,
+        date: date?.format("YYYY-MM-DD") || "",
+      };
+      onAddExpense(newExpense);
+    } else if (modalType === "edit" && expense) {
       const updatedExpense: Expense = {
         ...expense,
         expense: title,
@@ -220,10 +218,8 @@ const ModalDialog = ({
           : "Add Expense"
       }
       onOk={
-        modalType === "add"
-          ? handleAdd
-          : modalType === "edit"
-          ? handleEdit
+        modalType === "add" || modalType === "edit"
+          ? handleExpense
           : modalType === "delete"
           ? handleDelete
           : onClose
@@ -275,7 +271,7 @@ const ModalDialog = ({
               htmlType='submit'
               type='primary'
               style={{ padding: "20px 0", borderRadius: "8px" }}
-              onClick={modalType === "add" ? handleAdd : handleEdit}
+              onClick={modalType === "add" || modalType === "edit" ? handleExpense : onClose}
               disabled={!isFormValid}
             >
               {modalType === "add" ? "Add" : "Save"}

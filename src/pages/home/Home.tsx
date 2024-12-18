@@ -197,8 +197,8 @@ const Home = () => {
     );
   };
 
-  const handleAddExpense = (expense: Expense) => {
-    if (loggedInUser) {
+  const handleExpense = (expense: Expense, type: "add" | "edit") => {
+    if (type === "add" && loggedInUser) {
       const newExpense = { ...expense, userId: loggedInUser.userId };
       dispatch(addExpense(newExpense));
       dispatch(
@@ -212,27 +212,27 @@ const Home = () => {
           expenseTitle: expense.expense,
         })
       );
-      setModalType(null);
       showToast("add", "Expense Added Successfully!");
+    } else if (type === "edit") {
+      dispatch(updateExpense(expense));
+      dispatch(
+        addNotification({
+          id: Date.now(),
+          userId: expense.userId,
+          type: "update",
+          message: "updated successfully",
+          timestamp: Date.now(),
+          icon: "update_icon",
+          expenseTitle: expense.expense,
+        })
+      );
+      showToast("edit", "Expense Updated Successfully!");
     }
+    setModalType(null);
   };
 
-  const handleEditExpense = (expense: Expense) => {
-    dispatch(updateExpense(expense));
-    dispatch(
-      addNotification({
-        id: Date.now(),
-        userId: expense.userId,
-        type: "update",
-        message: "updated successfully",
-        timestamp: Date.now(),
-        icon: "update_icon",
-        expenseTitle: expense.expense,
-      })
-    );
-    setModalType(null);
-    showToast("edit", "Expense Updated Successfully!");
-  };
+  const handleAddExpense = (expense: Expense) => handleExpense(expense, "add");
+  const handleEditExpense = (expense: Expense) => handleExpense(expense, "edit");
 
   const handleDeleteExpense = (key: number) => {
     const expense = userExpenses.find((item) => item.key === key);
